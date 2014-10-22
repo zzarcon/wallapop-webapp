@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WallapopWebapp</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{BASE_TAG}}
+
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/wallapop-webapp.css">
+  </head>
+  <body>
+    <script>
+      window.WallapopWebappENV = {{ENV}};
+      window.EmberENV = window.WallapopWebappENV.EmberENV;
+    </script>
+    <script src="assets/vendor.js"></script>
+    <script src="assets/wallapop-webapp.js"></script>
+    <script>
+      window.WallapopWebapp = require('wallapop-webapp/app')['default'].create(WallapopWebappENV.APP);
+    </script>
+  </body>
+</html>
