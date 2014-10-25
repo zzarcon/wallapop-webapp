@@ -1,0 +1,74 @@
+@mixin square($size: 100%){
+  width: $size;
+  height: $size;
+}
+
+@mixin absolute-top-left ($top:0, $left:0){
+  position : absolute;
+  top      : $top;
+  left     : $left;
+  right    : auto;
+  bottom   : auto;
+}
+
+
+@mixin absolute-top-right ($top:0, $right:0){
+  position : absolute;
+  top      : $top;
+  right    : $right;
+  left     : auto;
+  bottom   : auto;
+}
+
+
+@mixin absolute-bottom-left ($bottom:0, $left:0){
+  position : absolute;
+  top      : auto;
+  right    : auto;
+  left     : $left;
+  bottom   : $bottom;
+}
+
+
+@mixin absolute-bottom-right ($bottom:0, $right:0){
+  position : absolute;
+  top      : auto;
+  right    : $right;
+  left     : auto;
+  bottom   : $bottom;
+}
+
+@mixin fixed-top-left ($top:0, $left:0){
+  position : fixed;
+  top      : $top;
+  left     : $left;
+  right    : auto;
+  bottom   : auto;
+}
+
+
+@mixin fixed-top-right ($top:0, $right:0){
+  position : fixed;
+  top      : $top;
+  right    : $right;
+  left     : auto;
+  bottom   : auto;
+}
+
+
+@mixin fixed-bottom-left ($bottom:0, $left:0){
+  position : fixed;
+  top      : auto;
+  right    : auto;
+  left     : $left;
+  bottom   : $bottom;
+}
+
+
+@mixin fixed-bottom-right ($bottom:0, $right:0){
+  position : fixed;
+  top      : auto;
+  right    : $right;
+  left     : auto;
+  bottom   : $bottom;
+}

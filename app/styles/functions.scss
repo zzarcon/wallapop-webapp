@@ -1,0 +1,7 @@
+@function px-to-rem($px){
+  @return ($px / $base-rem) *  1rem;
+}
+
+@function image-url($image-name){
+  @return url("images/" + $image-name);
+}

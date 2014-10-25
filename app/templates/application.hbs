@@ -1,1 +1,6 @@
-{{outlet}}
+{{partial "application-header"}}
+<div class="application-content">
+  {{view "application-menu" visibleWhen=view.showMenu}}
+  {{view "search-filter" visibleWhen=view.showFilters}}
+  {{outlet}}
+</div>

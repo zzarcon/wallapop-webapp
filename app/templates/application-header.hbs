@@ -1,0 +1,9 @@
+<header class="application-header">
+  <div {{bind-attr class=":toggle-menu view.showMenu:on"}} {{action "toggleMenu" target="view"}}>
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+  </div>
+  <div class="logo"></div>
+  <div class="search-products" {{action "toggleSearchFilters" target="view"}}></div>
+</header>
