@@ -11,7 +11,7 @@ html, body {
 .application-header{
   @include flexbox;
   @include align-items(center);
-  // @include justify-content(center);
+  color: white;
   background-color: $navyblue;
   height: 2.5rem;
   padding: 0.5rem;
@@ -44,6 +44,11 @@ html, body {
     height: 2.5rem;
     background-size: contain;
   }
+
+  .search-products{
+    @include absolute-top-right(1.3rem, 1rem);
+    cursor: pointer;
+  }
 }
 
 //MENU
@@ -53,6 +58,7 @@ html, body {
   @include absolute-top-left;
   transition: opacity 0.3s;
   opacity: 0;
+  z-index: 9;
 
   &.visible{
     opacity: 1;
@@ -70,6 +76,20 @@ html, body {
   }
   .overlay{
     @include square;
+  }
+}
+
+//FILTERS
+.search-filter{
+  @include square;
+  @include absolute-top-left(0, 100%);
+  transition: left 1s, opacity 1s;
+  background-color: black;
+  opacity: 0;
+
+  &.visible{
+    left: 0;
+    opacity: 1;
   }
 }
 
