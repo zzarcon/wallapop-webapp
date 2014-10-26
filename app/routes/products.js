@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import Product from '../models/product';
+import QueryBuilder from '../services/query_builder';
 
 export default Ember.Route.extend({
   model: function() {
@@ -8,16 +9,16 @@ export default Ember.Route.extend({
     }
   },
 
-  queryURL: function(start) {
-    return 'https://pro2.wallapop.com/shnm-portlet/api/v1/item.json/search7?start=' + start;
-  },
+  queryBuilder: function() {
+    return this._queryBuilder || (this._queryBuilder = new QueryBuilder());
+  }.property(),
 
   loadRecords: function(s) {
     var start = this.get('controller.length') || 0;
     var route = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
-      Ember.$.get(route.queryURL(start)).then(function(result) {
+      Ember.$.get(route.get('queryBuilder').productsURL(start)).then(function(result) {
         var parsedItems = result.items.map(function(item) {
           return Product.create(item.item);
         });
