@@ -122,6 +122,10 @@ li{
         @include item-background;
         cursor: pointer;
         padding: 0.2rem 2rem;
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
       }
     }
 
