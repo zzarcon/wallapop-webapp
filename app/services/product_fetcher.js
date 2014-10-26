@@ -35,6 +35,24 @@ export default Ember.Object.extend({
     });
   },
 
+  products: function(start, filters) {
+    var fetcher = this;
+    var url = this.get('queryBuilder').productsURL(start, filters);
+    var store = this.get('store');
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      Ember.$.get(url).then(function(result) {
+        result.items.forEach(function(itemWrapper) {
+          var item = itemWrapper.item;
+          var record = $.extend({id: item.itemId}, item);
+          store.createRecord('product', record);
+        });
+
+        resolve(result);
+      });
+    });
+  },
+
   queryBuilder: function() {
     return this._queryBuilder || (this._queryBuilder = new QueryBuilder());
   }.property()

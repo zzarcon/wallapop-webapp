@@ -1,39 +1,28 @@
 import Ember from 'ember';
-import Product from '../models/product';
-import QueryBuilder from '../services/query_builder';
+import ProductFetcher from '../services/product_fetcher';
 
 export default Ember.Route.extend({
   model: function() {
-    if (!this.get('controller.length')) {
-      return this.loadRecords();
-    }
+    return this.get('store').all('product');
   },
 
-  queryBuilder: function() {
-    return this._queryBuilder || (this._queryBuilder = new QueryBuilder());
+  productFetcher: function() {
+    this._productFetcher = this._productFetcher || ProductFetcher.create({store: this.get('store')});
+    return this._productFetcher;
   }.property(),
 
-  loadRecords: function(s) {
-    var start = this.get('controller.length') || 0;
-    var route = this;
 
-    return new Ember.RSVP.Promise(function(resolve, reject) {
-      Ember.$.get(route.get('queryBuilder').productsURL(start)).then(function(result) {
-        var parsedItems = result.items.map(function(item) {
-          return Product.create(item.item);
-        });
-
-        resolve(parsedItems);
-      }).fail(reject);
-    });
+  beforeModel: function() {
+    var fetcher = this.get('productFetcher');
+    return fetcher.products();
   },
 
   actions: {
     loadMore: function() {
+      var start = this.get('controller.length');
       if (!this.get('controller.loadingMore')) {
         this.set('controller.loadingMore', true);
-        this.loadRecords().then(function(records) {
-          this.get('controller').pushObjects(records);
+        this.get('productFetcher').products(start).then(function(records) {
           this.set('controller.loadingMore', false);
         }.bind(this));
       }

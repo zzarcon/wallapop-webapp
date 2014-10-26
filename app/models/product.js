@@ -1,6 +1,9 @@
 import Ember from 'ember';
+import DS from 'ember-data';
 
-export default Ember.Object.extend({
-  bigImage: Ember.computed.alias('mainImage.bigURL'),
-  smallImage: Ember.computed.alias('mainImage.smallURL')
+export default DS.Model.extend({
+  title: DS.attr('string'),
+  description: DS.attr('string'),
+  mainImage: DS.attr('array'),
+  salePrice: DS.attr('number')
 });
