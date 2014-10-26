@@ -4,11 +4,11 @@ export default Ember.View.extend({
   elementId: "products",
 
   bindToScroll: function() {
-    $(window).on('scroll', this.scroll.bind(this));
+    $("#application").on('scroll', this.scroll.bind(this));
   }.on('didInsertElement'),
 
   unbindFromScroll: function() {
-    $(window).off('scroll', this.scroll.bind(this));
+    $("#application").off('scroll', this.scroll.bind(this));
   }.on('willDestroy'),
 
   setupMasonry: function() {
@@ -20,7 +20,9 @@ export default Ember.View.extend({
   }.on('didInsertElement'),
 
   scroll: function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
+    var $app = $("#application");
+
+    if($app.scrollTop() + $(window).height() == $app.prop('scrollHeight')) {
       this.get('controller').send('loadMore');
     }
   }

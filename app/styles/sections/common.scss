@@ -2,10 +2,17 @@ html, body {
   @include square;
   margin: 0;
   font-family: Verdana;
+  overflow: hidden;
 }
-
+ul{
+  padding: 0;
+}
+li{
+  list-style: none;
+}
 #application{
   @include square;
+  overflow: auto;
 }
 
 //HEADER
@@ -16,6 +23,13 @@ html, body {
   background-color: $navyblue;
   height: 2.5rem;
   padding: 0.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  border-bottom: 2px solid #00b6a2;
+  box-shadow: 0px 1px 9px -2px black;
 
   //Toggle menu
   .toggle-menu {
@@ -56,11 +70,13 @@ html, body {
 .application-menu{
   $menu-width: 20rem;
   @include square;
-  @include absolute-top-left;
   transition: opacity 0.3s;
   opacity: 0;
   z-index: 9;
   pointer-events: none;
+  position: fixed;
+  left: 0;
+  top: $application-header-height;
 
   &.visible{
     pointer-events: auto;
@@ -71,11 +87,44 @@ html, body {
   }
 
   .menu-content{
+    @mixin item-background(){
+      transition: background-color 0.3s;
+      &:hover{
+        background-color: $navyblue;
+      }
+    }
     @include absolute-top-left(0, -$menu-width);
     transition: left 0.5s;
     background-color: $gray;
     height: 100%;
     width: $menu-width;
+    color: white;
+
+    .menu-item{
+      @include item-background;
+      cursor: pointer;
+      padding: 1rem;
+      height: 1.2rem;
+
+      i{
+        margin-right: 0.3rem;
+      }
+    }
+    .sub-section{
+      height: 0;
+      overflow: hidden;
+      transition: height 0.5s;
+
+      &.visible{
+        height: 12rem;
+      }
+      li{
+        @include item-background;
+        cursor: pointer;
+        padding: 0.2rem 2rem;
+      }
+    }
+
   }
   .overlay{
     @include square;
@@ -102,6 +151,8 @@ html, body {
 
 //Content
 .application-content{
+  overflow-x: hidden;
+  width: 100%;
   position: relative;
-  @include square;
+  margin-top: $application-header-height;
 }

@@ -1,4 +1,16 @@
 <div class="menu-content">
-
+  <div class="menu-item collections">
+    <i class="fa fa-heart"></i> Collections
+  </div>
+  <div class="menu-item categories" {{action "toggleCategories" target="view"}}>
+    <i class="fa fa-th-list"></i> Categories
+  </div>
+  <div {{bind-attr class=":sub-section view.showCategories:visible"}}>
+    <ul>
+      {{#each category in categories}}
+        <li class="category">{{category.name}}</li>
+      {{/each}}
+    </ul>
+  </div>
 </div>
 <div class="overlay" {{action "hideMenu" target="view"}}></div>
