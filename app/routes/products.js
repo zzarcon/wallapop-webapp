@@ -30,11 +30,11 @@ export default Ember.Route.extend({
 
   actions: {
     loadMore: function() {
-      if (!this.loadingMore) {
-        this.loadingMore = true;
+      if (!this.get('controller.loadingMore')) {
+        this.set('controller.loadingMore', true);
         this.loadRecords().then(function(records) {
           this.get('controller').pushObjects(records);
-          this.loadingMore = false;
+          this.set('controller.loadingMore', false);
         }.bind(this));
       }
     }
