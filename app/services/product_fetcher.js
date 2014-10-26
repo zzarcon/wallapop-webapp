@@ -45,7 +45,7 @@ export default Ember.Object.extend({
         result.items.forEach(function(itemWrapper) {
           var item = itemWrapper.item;
           var record = $.extend({id: item.itemId}, item);
-          store.createRecord('product', record);
+          store.getById('product', item.itemId) || store.createRecord('product', record);
         });
 
         resolve(result);
