@@ -5,7 +5,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('products');
+  this.resource('products', function() {
+    this.route('show', {path: '/:productId'});
+  });
   this.route('about');
 });
 
