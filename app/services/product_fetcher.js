@@ -3,7 +3,7 @@ import DS from 'ember-data';
 import QueryBuilder from './query_builder';
 
 export default Ember.Object.extend({
-  categories: function() {
+  bootstrap: function() {
     var fetcher = this;
     var bootstrapURL = this.get('queryBuilder').bootstrapURL();
     var store = this.get('store');
@@ -14,7 +14,23 @@ export default Ember.Object.extend({
           store.createRecord('category', {id: category.categoryId, name: category.name});
         });
 
-        resolve({categories: store.all('category')});
+        result.collections.forEach(function(collection) {
+          store.createRecord('collection', {
+            id: collection.collectionId,
+            title: collection.title,
+            description: collection.description
+          });
+        });
+
+        result.resultFacet.orders.forEach(function(order) {
+          store.createRecord('order', {
+            title: order.title,
+            orderType: order.orderType,
+            orderBy: order.orderBy
+          });
+        });
+
+        resolve(result);
       });
     });
   },

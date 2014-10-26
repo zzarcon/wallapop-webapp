@@ -3,7 +3,7 @@ import Fetcher from "../services/product_fetcher";
 
 export default Ember.Route.extend({
   beforeModel: function() {
-    return this.get('fetcher').categories();
+    return this.get('fetcher').bootstrap();
   },
 
   fetcher: function() {
