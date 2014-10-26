@@ -13,7 +13,7 @@ export default Ember.Object.extend({
       filters.distance && params.push('distanceSegments=' + [filters.distance.min, filters.distance.max].join("_"));
     }
 
-    startItem && params.push('start =' + startItem);
+    startItem && params.push('start=' + startItem);
 
     return [this.baseSearchURL, params.join("&")].join("?");
   },
