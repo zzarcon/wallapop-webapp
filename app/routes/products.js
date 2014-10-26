@@ -2,7 +2,11 @@ import Ember from 'ember';
 import ProductFetcher from '../services/product_fetcher';
 
 export default Ember.Route.extend({
-  model: function() {
+  queryParams: {
+    categories: { refreshModel: true },
+  },
+
+  model: function(_, transition) {
     return this.get('store').all('product');
   },
 
@@ -12,9 +16,17 @@ export default Ember.Route.extend({
   }.property(),
 
 
-  beforeModel: function() {
+  beforeModel: function(transition) {
     var fetcher = this.get('productFetcher');
-    return fetcher.products();
+    var queryParams = transition.queryParams;
+    var filters = {
+      categories: queryParams.categories && queryParams.categories.split(",")
+    };
+
+    this.set('filters', filters);
+    this.get('store').unloadAll('product');
+
+    return fetcher.products(null, filters);
   },
 
   actions: {
@@ -22,7 +34,7 @@ export default Ember.Route.extend({
       var start = this.get('controller.length');
       if (!this.get('controller.loadingMore')) {
         this.set('controller.loadingMore', true);
-        this.get('productFetcher').products(start).then(function(records) {
+        this.get('productFetcher').products(start, this.get('filters')).then(function(records) {
           this.set('controller.loadingMore', false);
         }.bind(this));
       }
