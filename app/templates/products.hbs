@@ -1,9 +1,11 @@
-{{!-- products:
-
-{{#each product in this}}
-  <div style='margin-bottom: 52px'>
-    {{product.title}} <br>
-    {{product.description}}
-  </div>
-{{/each}}
- --}}
+<div id="container">
+  {{#each product in this}}
+    <div class="item product">
+      <div class="product-image" style="background-image: url({{unbound product.smallImage}})"></div>
+      <footer>
+        <div class="title">{{product.title}}</div>
+        <div class="price">{{product.salePrice}} €</div>
+      </footer>
+    </div>
+  {{/each}}
+</div>

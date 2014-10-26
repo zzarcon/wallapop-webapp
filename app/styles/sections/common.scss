@@ -1,6 +1,7 @@
 html, body {
   @include square;
   margin: 0;
+  font-family: Verdana;
 }
 
 #application{
@@ -59,8 +60,10 @@ html, body {
   transition: opacity 0.3s;
   opacity: 0;
   z-index: 9;
+  pointer-events: none;
 
   &.visible{
+    pointer-events: auto;
     opacity: 1;
     .menu-content{
       left: 0;
@@ -76,6 +79,7 @@ html, body {
   }
   .overlay{
     @include square;
+    background-color: rgba(black, 0.3);
   }
 }
 
@@ -86,8 +90,11 @@ html, body {
   transition: left 1s, opacity 1s;
   background-color: black;
   opacity: 0;
+  z-index: 1;
+  pointer-events: none;
 
   &.visible{
+    pointer-events: auto;
     left: 0;
     opacity: 1;
   }
