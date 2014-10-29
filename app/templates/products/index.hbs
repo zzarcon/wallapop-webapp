@@ -1,14 +1,14 @@
 <div id="container">
   {{#each product in this}}
-    <div class="item product">
-      <div class="product-image" style="background-image: url({{unbound product.smallImage}})"></div>
-      <footer>
-        {{#link-to 'products.show' product.id}}
-          <div class="title">{{product.title}}</div>
-          <div class="price">{{product.salePrice}} €</div>
-        {{/link-to}}
-      </footer>
-    </div>
+    {{#link-to 'products.show' product.id}}
+      <div class="item product">
+        <div class="product-image" style="background-image: url({{unbound product.smallImage}})"></div>
+        <footer>
+            <div class="title">{{product.title}}</div>
+            <div class="price">{{product.salePrice}} €</div>
+        </footer>
+      </div>
+    {{/link-to}}
   {{/each}}
 </div>
 <div class="loader-wrapper">

@@ -1,0 +1,15 @@
+#product{
+  .product-img{
+    margin: 0 auto;
+  }
+
+  ul{
+    height: 100%;
+
+    .product-img{
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}

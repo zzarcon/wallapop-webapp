@@ -16,7 +16,8 @@
     "moment": "*",
     "sass-flex-mixin": "git@github.com:mastastealth/sass-flex-mixin.git",
     "font-awesome": "*",
-    "masonry": "*"
+    "masonry": "*",
+    "bxslider-4": "*"
   },
   "resolutions": {
     "ember": ">= 1.7.0"
