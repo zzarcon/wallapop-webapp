@@ -1,4 +1,27 @@
 #product{
+  $light-gray: #f4efef;
+
+  .user-info{
+    @include absolute-top-left;
+
+    .user-img{
+      background-color: $light-gray;
+      border: 2px solid white;
+      width: 3rem;
+      border-radius: 100%;
+      position: absolute;
+    }
+    .user-name{
+      padding: 0.6rem;
+      background-color: rgba(white, 0.8);
+      border-radius: 0 1rem 1rem 0;
+    }
+  }
+  .block{
+    padding: 0.8rem;
+    background-color: white;
+  }
+
   .product-img{
     margin: 0 auto;
   }
@@ -11,5 +34,32 @@
       background-position: center;
       background-repeat: no-repeat;
     }
+  }
+
+  .product-info-wrapper{
+    padding: 1rem;
+    background-color: $light-gray;
+  }
+
+  .product-info{
+    header{
+      overflow: hidden;
+      font-size: 1.7rem;
+      .title{
+        color: $navyblue;
+        float: left;
+      }
+      .price{
+        float: right;
+      }
+    }
+
+    .description{
+      margin-top: 1rem;
+    }
+  }
+
+  .product-location{
+    margin-top: 1rem;
   }
 }

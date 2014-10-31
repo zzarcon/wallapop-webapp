@@ -1,9 +1,34 @@
 <div class="query">
-
+  <input type="search" class="search-query" placeholder="What are you looking for?">
 </div>
-<ul class="categories">
-  {{!-- <header>Categories - {{}}</header> --}}
-</ul>
-<ul class="order">
-  <header>Order by - {{selectedOrder}}</header>
-</ul>
+<div class="location-search">
+  Where are you searching for it?
+</div>
+{{#view "filter-section" title="Categories" class="categories"}}
+  <li>
+    <input type="radio" value="">Fashion and accesories
+  </li>
+  <li>
+    <input type="radio" value="">Home and garden
+  </li>
+  <li>
+    <input type="radio" value="">Electronics
+  </li>
+  <li>
+    <input type="radio" value="">Movies, books and music
+  </li>
+{{/view}}
+{{#view "filter-section" title="Order by" class="order"}}
+  <li>
+    Proximity
+  </li>
+  <li>
+    Proximity
+  </li>
+  <li>
+    Proximity
+  </li>
+  <li>
+    Proximity
+  </li>
+{{/view}}

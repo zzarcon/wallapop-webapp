@@ -6,8 +6,13 @@ export default Ember.View.extend({
 
   //FUCKING METAMORPHS
   sliderHTML: function() {
+    var images = this.get('controller.images');
+    if (Ember.isEmpty(images)) {
+      return;
+    }
+
     var html = '<ul class="bxslider">';
-    this.get('controller.images').forEach(function(img) {
+    images.forEach(function(img) {
       html += '<li><img class="product-img" src="' + img.bigURL + '"></li>';
       // html += '<li><div class="product-img" style="background-image: url(' + img.bigURL + ');"></div></li>';
     });

@@ -4,6 +4,8 @@
     <div class="two"></div>
     <div class="three"></div>
   </div>
-  <div class="logo"></div>
+  {{#link-to "products"}}
+    <div class="logo"></div>
+  {{/link-to}}
   <i class="fa fa-search search-products" {{action "toggleSearchFilters" target="view"}}></i>
 </header>

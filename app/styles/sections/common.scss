@@ -137,23 +137,6 @@ li{
   }
 }
 
-//FILTERS
-.search-filter{
-  @include square;
-  @include absolute-top-left(0, 100%);
-  transition: left 1s, opacity 1s;
-  background-color: black;
-  opacity: 0;
-  z-index: 1;
-  pointer-events: none;
-
-  &.visible{
-    pointer-events: auto;
-    left: 0;
-    opacity: 1;
-  }
-}
-
 //Content
 .application-content{
   overflow-x: hidden;
