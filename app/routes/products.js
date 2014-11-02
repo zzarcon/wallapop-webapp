@@ -32,6 +32,7 @@ export default Ember.Route.extend({
   actions: {
     loadMore: function() {
       var start = this.get('controller.length');
+
       if (!this.get('controller.loadingMore')) {
         this.set('controller.loadingMore', true);
         this.get('productFetcher').products(start, this.get('filters')).then(function(records) {

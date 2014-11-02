@@ -6,13 +6,24 @@ export default Ember.View.extend({
   classNameBindings: ['visibleWhen:visible'],
   showCategories: false,
 
+  hide: function() {
+    this.set('visibleWhen', false);
+  },
+
   actions: {
     hideMenu: function() {
-      this.set('visibleWhen', false);
+      this.hide();
     },
 
     toggleCategories: function() {
       this.toggleProperty('showCategories');
+    },
+
+    openCategory: function(id) {
+      this.get('controller').transitionToRoute("products", {
+        queryParams: {categories: id}
+      });
+      this.hide();
     }
   }
 });

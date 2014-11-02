@@ -8,11 +8,9 @@
   <div {{bind-attr class=":sub-section view.showCategories:visible"}}>
     <ul>
       {{#each category in categories}}
-      <li class="category">
-        {{#link-to 'products' (query-params categories=category.id)}}
+        <li class="category" {{action "openCategory" category.id target="view"}}>
           {{category.name}}
-        {{/link-to}}
-      </li>
+        </li>
       {{/each}}
     </ul>
   </div>
