@@ -3,9 +3,10 @@ import Ember from "ember";
 export default Ember.View.extend({
   layoutName: 'filter-section',
   classNames: ['filter-section'],
-  classNameBindings: ['visible'],
+  classNameBindings: ['visible', 'clickable'],
 
-  visible: false,
+  visible: true,
+  clickable: true,
 
   setInputFocus: function() {
     if (this.get('visible')) {

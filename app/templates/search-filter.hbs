@@ -2,33 +2,37 @@
   <input type="search" class="search-query" placeholder="What are you looking for?">
 </div>
 <div class="location-search">
+  <i class="fa fa-location-arrow"></i>
   Where are you searching for it?
+  <i class="fa fa-chevron-right arrow"></i>
 </div>
 {{#view "filter-section" title="Categories" class="categories"}}
+  {{#each category in categories}}
+    <li>
+      <input type="radio" value=""> {{category.name}}
+    </li>
+  {{/each}}
+{{/view}}
+{{#view "filter-section" title="Distance" class="distance"}}
   <li>
-    <input type="radio" value="">Fashion and accesories
+    Close (1km)
   </li>
   <li>
-    <input type="radio" value="">Home and garden
+    My area (5km)
   </li>
   <li>
-    <input type="radio" value="">Electronics
+    My city (10km)
   </li>
   <li>
-    <input type="radio" value="">Movies, books and music
+    Without limit
   </li>
 {{/view}}
+{{#view "filter-section" clickable=false title="Price" class="price"}}
+  <li>From <input type="text"></li>
+  <li>To <input type="text"></li>
+{{/view}}
 {{#view "filter-section" title="Order by" class="order"}}
-  <li>
-    Proximity
-  </li>
-  <li>
-    Proximity
-  </li>
-  <li>
-    Proximity
-  </li>
-  <li>
-    Proximity
-  </li>
+  {{#each order in orders}}
+    <li>{{order.title}}</li>
+  {{/each}}
 {{/view}}
