@@ -5,6 +5,10 @@ export default Ember.View.extend({
   showMenu: false,
   showFilters: false,
 
+  removeInitLoader: function() {
+    $('#init-loader').remove();
+  }.on('didInsertElement'),
+
   actions: {
     toggleMenu: function() {
       // debugger;

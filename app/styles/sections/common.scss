@@ -11,6 +11,14 @@ ul{
 li{
   list-style: none;
 }
+
+#init-loader{
+  @include flexbox;
+  @include justify-content(center);
+  @include flex-direction(column);
+  @include align-items(center);
+  height: 100%;
+}
 #application{
   @include square;
   overflow: auto;
