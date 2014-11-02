@@ -17,7 +17,10 @@
     "sass-flex-mixin": "git@github.com:mastastealth/sass-flex-mixin.git",
     "font-awesome": "*",
     "masonry": "*",
-    "bxslider-4": "*"
+    "bxslider-4": "*",
+    "leaflet": "*",
+    "ember-leaflet": "0.6.0",
+    "leaflet.markercluster": "0.4.0"
   },
   "resolutions": {
     "ember": ">= 1.7.0"

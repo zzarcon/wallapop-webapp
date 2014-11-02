@@ -2,18 +2,18 @@
   {{{view.sliderHTML}}}
   <div class="user-info">
     <div class="user-img"></div>
-    <div class="user-name">anamaria t.</div>
+    <div class="user-name">{{sellerUser.microName}}</div>
   </div>
 </div>
 <div class="product-info-wrapper">
   <div class="product-info block">
     <header>
-      <div class="title">Chaqueta Cortefiel</div>
-      <div class="price">25€</div>
+      <div class="title">{{title}}</div>
+      <div class="price">{{salePrice}}€</div>
     </header>
-    <div class="description">Chaqueta marron chocolate cortefiel sin uso talla 44-46 justa</div>
+    <div class="description">{{description}}</div>
   </div>
   <div class="product-location block">
-    TODO: Include Google map with the product coordinates
+    {{view "products/map"}}
   </div>
 </div>
