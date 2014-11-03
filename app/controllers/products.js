@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
-  selectedOrder: ""
+  queryParams: ['categories'],
+  selectedOrder: "",
+  keywords: ""
 });
