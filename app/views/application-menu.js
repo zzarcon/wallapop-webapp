@@ -8,6 +8,7 @@ export default Ember.View.extend({
 
   hide: function() {
     this.set('visibleWhen', false);
+    this.set('showCategories', false);
   },
 
   actions: {

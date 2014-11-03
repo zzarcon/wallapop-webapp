@@ -1,5 +1,5 @@
 <header {{action "toggleVisibility" target="view"}}>
-  {{view.title}} -
+  {{view.title}} - <i {{bind-attr class=":fa :arrow view.visible:fa-chevron-right:fa-chevron-down"}}></i>
 </header>
 <ul>
   {{yield}}
