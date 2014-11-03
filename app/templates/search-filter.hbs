@@ -1,3 +1,4 @@
+<button {{action 'filterProducts'}} class="fa fa-check">Filter</button>
 <div class="query">
   <input type="search" class="search-query" placeholder="What are you looking for?">
 </div>
@@ -9,7 +10,7 @@
 {{#view "filter-section" title="Categories" class="categories"}}
   {{#each category in categories}}
     <li>
-      <input type="radio" value=""> {{category.name}}
+      {{input type="checkbox" checked=category.selected}} {{category.name}}
     </li>
   {{/each}}
 {{/view}}
