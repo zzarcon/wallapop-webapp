@@ -126,7 +126,7 @@ li{
       transition: height 0.5s;
 
       &.visible{
-        height: 12rem;
+        height: 100%;
       }
       li{
         @include item-background;
