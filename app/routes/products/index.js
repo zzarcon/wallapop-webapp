@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ProductFetcher from '../services/product_fetcher';
+import ProductFetcher from '../../services/product_fetcher';
 
 export default Ember.Route.extend({
   queryParams: {

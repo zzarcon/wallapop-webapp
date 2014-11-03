@@ -14,7 +14,7 @@ export default Ember.View.extend({
   scroll: function() {
     var $app = $("#application");
 
-    if($app.scrollTop() + $(window).height() == $app.prop('scrollHeight')) {
+    if($app.scrollTop() + $(window).height() === $app.prop('scrollHeight')) {
       this.get('controller').send('loadMore');
     }
   }

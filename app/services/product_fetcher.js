@@ -1,10 +1,8 @@
 import Ember from 'ember';
-import DS from 'ember-data';
 import QueryBuilder from './query_builder';
 
 export default Ember.Object.extend({
   bootstrap: function() {
-    var fetcher = this;
     var bootstrapURL = this.get('queryBuilder').bootstrapURL();
     var store = this.get('store');
 
@@ -36,7 +34,6 @@ export default Ember.Object.extend({
   },
 
   products: function(start, filters) {
-    var fetcher = this;
     var url = this.get('queryBuilder').productsURL(start, filters);
     var store = this.get('store');
 
