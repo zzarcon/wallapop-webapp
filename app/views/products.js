@@ -11,14 +11,6 @@ export default Ember.View.extend({
     $("#application").off('scroll', this.scroll.bind(this));
   }.on('willDestroy'),
 
-  setupMasonry: function() {
-    // this.$('#container').masonry({
-    //   columnWidth: 60,
-    //   itemSelector: '.item',
-    //   gutter: 10
-    // });
-  }.on('didInsertElement'),
-
   scroll: function() {
     var $app = $("#application");
 
