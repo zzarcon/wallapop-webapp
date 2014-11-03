@@ -2,6 +2,23 @@
   text-align: center;
   background-color: #efefef;
 
+  .filter-legend{
+    background-color: white;
+    border-bottom: 1px solid #e0e0e2;
+    text-align: center;
+    padding: 1rem;
+    color: #545454;
+    position: fixed;
+    top: $application-header-height;
+    width: 100%;
+    left: 0;
+    z-index: 1;
+  }
+
+  #container{
+    margin-top: 3.2rem;
+  }
+
   .product{
     width: 10rem;
     display: inline-block;
