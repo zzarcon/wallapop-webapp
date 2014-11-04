@@ -29,8 +29,8 @@
   </li>
 {{/view}}
 {{#view "filter-section" clickable=false title="Price" class="price"}}
-  <li>From <input type="text"></li>
-  <li>To <input type="text"></li>
+  <li>From {{input type="text" value=priceMin}}</li>
+  <li>To {{input type="text" value=priceMax}}</li>
 {{/view}}
 {{#view "filter-section" title="Order by" class="order"}}
   {{#each order in orders}}

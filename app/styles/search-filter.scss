@@ -13,7 +13,7 @@
 
   &.visible{
     pointer-events: auto;
-    left: 0;
+    left: 50%;
     opacity: 1;
   }
 
@@ -55,7 +55,6 @@
 
     &.price{
       input{
-        float: right;
         text-align: center;
       }
     }

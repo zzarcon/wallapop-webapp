@@ -4,6 +4,9 @@ import ProductFetcher from '../../services/product_fetcher';
 export default Ember.Route.extend({
   queryParams: {
     categories: { refreshModel: true },
+    keywords: { refreshModel: true },
+    priceMin: { refreshModel: true },
+    priceMax: { refreshModel: true },
   },
 
   model: function(_, transition) {
@@ -20,7 +23,9 @@ export default Ember.Route.extend({
     var fetcher = this.get('productFetcher');
     var queryParams = transition.queryParams;
     var filters = {
-      categories: queryParams.categories && queryParams.categories.split(",")
+      categories: queryParams.categories && queryParams.categories.split(","),
+      keywords: queryParams.keywords,
+      price: {min: queryParams.priceMin, max: queryParams.priceMax}
     };
 
     this.set('filters', filters);

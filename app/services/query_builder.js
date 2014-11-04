@@ -8,9 +8,11 @@ export default Ember.Object.extend({
     if (filters) {
       filters.categories && params.push('categoryIds=' + filters.categories.join(","));
 
-      filters.price && params.push('salePriceSegments=' + [filters.price.min, filters.price.max].join("_"));
+      filters.price && params.push('salePriceSegments=' + [filters.price.min, filters.price.max].compact().join("_"));
 
       filters.distance && params.push('distanceSegments=' + [filters.distance.min, filters.distance.max].join("_"));
+
+      filters.keywords && params.push('keywords=' + filters.keywords);
     }
 
     startItem && params.push('start=' + startItem);
