@@ -7,6 +7,8 @@ export default Ember.Route.extend({
     keywords: { refreshModel: true },
     priceMin: { refreshModel: true },
     priceMax: { refreshModel: true },
+    orderBy: { refreshModel: true },
+    orderType: { refreshModel: true },
   },
 
   model: function(_, transition) {

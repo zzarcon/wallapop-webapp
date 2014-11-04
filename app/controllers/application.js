@@ -1,15 +1,22 @@
 import Ember from "ember";
 
 export default Ember.ObjectController.extend({
-  keywords: "",
-  priceMin: null,
-  priceMax: null,
+  setupFilters: function() {
+    this.set('content', {});
+    this.get('filterNames').forEach(function(filterName) {
+      this.get(filterName) || this.set(filterName, null);
+    }.bind(this));
+  }.on('init'),
+
+  filterNames: function() {
+    return "keywords priceMin priceMax orderBy orderType categories".split(" ");
+  }.property(),
 
   products: function(){
     return this.get('container').lookup('controller:products.index');
   }.property(),
 
-  categories: function() {
+  allCategories: function() {
     return this.get('store').all('category');
   }.property(),
 
@@ -17,20 +24,37 @@ export default Ember.ObjectController.extend({
     return this.get('store').all('order');
   }.property(),
 
-  enabledCategoryIds: function() {
-    var store = this.get('store');
-    return store.all('category').filterBy('selected').mapBy('id');
-  },
+  categories: Ember.computed.mapBy('_selectedCategories', 'id'),
+
+  _categories: function() {
+    return this.get('store').all('category');
+  }.property(),
+
+  _selectedCategories: Ember.computed.filterBy('_categories', 'selected'),
 
   actions: {
+    selectOrder: function(order) {
+      this.get('store').all('order').forEach(function(ord) {
+        ord.set('selected', false);
+      });
+
+      order.set('selected', true);
+      this.set('orderBy', order.get('orderBy'));
+      this.set('orderType', order.get('orderType'));
+    },
+
     filterProducts: function() {
-      this.transitionToRoute("products", {
-        queryParams: {
-          categories: this.enabledCategoryIds(),
-          keywords: this.get('keywords'),
-          priceMin: this.get('priceMin'),
-          priceMax: this.get('priceMax')
+      var queryParams = {};
+
+      this.get('filterNames').forEach(function(paramToCheck) {
+        var param = this.get(paramToCheck);
+        if (param && (!param.length || param.length > 0)) {
+          queryParams[paramToCheck] = this.get(paramToCheck);
         }
+      }.bind(this));
+
+      this.transitionToRoute("products", {
+        queryParams: queryParams
       });
     }
   }

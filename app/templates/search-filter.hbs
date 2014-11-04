@@ -8,7 +8,7 @@
   <i class="fa fa-chevron-right arrow"></i>
 </div>
 {{#view "filter-section" title="Categories" class="categories"}}
-  {{#each category in categories}}
+  {{#each category in allCategories}}
     <li>
       {{input type="checkbox" checked=category.selected}} {{category.name}}
     </li>
@@ -34,6 +34,8 @@
 {{/view}}
 {{#view "filter-section" title="Order by" class="order"}}
   {{#each order in orders}}
-    <li>{{order.title}}</li>
+  <li {{bind-attr class=":clickable order.selected:selected"}} {{action "selectOrder" order}}>
+    {{order.title}}
+  </li>
   {{/each}}
 {{/view}}

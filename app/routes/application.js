@@ -16,11 +16,25 @@ export default Ember.Route.extend({
   }.property(),
 
   setFromQueryParams: function(controller, queryParams) {
-    this.get('store').all('category').forEach(function(c) {
-      if (queryParams.categories.split(",").contains(c.get('id'))) {
-        c.set('selected', true);
-      }
-    });
+    var categories = queryParams.categories;
+    var orderType = queryParams.orderType;
+    var orderBy = queryParams.orderBy;
+
+    if (categories) {
+      this.get('store').all('category').forEach(function(c) {
+        if (categories.split(",").contains(c.get('id'))) {
+          c.set('selected', true);
+        }
+      });
+    }
+
+    if (orderBy && orderType) {
+      this.get('store').all('order').filter(function(order) {
+        return order.get('orderType') == orderType && order.get('orderBy') == orderBy;
+      }).forEach(function(order) {
+        order.set('selected', true);
+      });
+    }
 
     controller.set('keywords', queryParams.keywords);
     controller.set('priceMin', queryParams.priceMin);
