@@ -70,9 +70,19 @@ li{
     background-size: contain;
   }
 
-  .search-products{
-    @include absolute-top-right(1.3rem, 1rem);
+  .search-bar-button, .search-button {
+    position: absolute;
+    top: 1rem;
+    font-size: 2rem;
     cursor: pointer;
+  }
+
+  .search-bar-button{
+    right: 3rem;
+  }
+
+  .search-button{
+    right: 6rem;
   }
 }
 

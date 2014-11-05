@@ -18,6 +18,11 @@ export default Ember.View.extend({
     toggleSearchFilters: function() {
       // debugger;
       this.toggleProperty('showFilters');
+    },
+
+    filterProducts: function() {
+      this.set('showFilters', false);
+      this.get('controller').send('filterProducts');
     }
   }
 });
