@@ -7,7 +7,7 @@
   </div>
   <div {{bind-attr class=":sub-section view.showCategories:visible"}}>
     <ul>
-      {{#each category in categories}}
+      {{#each category in allCategories}}
         <li class="category" {{action "openCategory" category.id target="view"}}>
           {{category.name}}
         </li>
