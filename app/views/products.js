@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import AppStatus from "../app-status";
 
 export default Ember.View.extend({
   elementId: "products",
@@ -12,9 +13,13 @@ export default Ember.View.extend({
   }.on('willDestroy'),
 
   scroll: function() {
+    if (AppStatus.get('currentRouteName') !== "products.index") {
+      return;
+    }
+
     var $app = $("#application");
 
-    if($app.scrollTop() + $(window).height() === $app.prop('scrollHeight')) {
+    if ($app.scrollTop() + $(window).height() === $app.prop('scrollHeight')) {
       this.get('controller').send('loadMore');
     }
   }

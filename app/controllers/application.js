@@ -1,4 +1,5 @@
 import Ember from "ember";
+import AppStatus from "../app-status";
 
 export default Ember.ObjectController.extend({
   setupFilters: function() {
@@ -31,6 +32,10 @@ export default Ember.ObjectController.extend({
   }.property(),
 
   _selectedCategories: Ember.computed.filterBy('_categories', 'selected'),
+
+  currentRouteNameDidChange: function() {
+    AppStatus.set('currentRouteName', this.get('currentRouteName'));
+  }.observes('currentRouteName'),
 
   actions: {
     selectOrder: function(order) {

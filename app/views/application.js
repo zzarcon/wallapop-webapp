@@ -3,7 +3,7 @@ import Ember from "ember";
 export default Ember.View.extend({
   elementId: 'application',
   showMenu: false,
-  showFilters: true,
+  showFilters: false,
 
   removeInitLoader: function() {
     $('#init-loader').remove();
