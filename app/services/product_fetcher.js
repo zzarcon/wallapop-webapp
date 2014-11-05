@@ -33,21 +33,43 @@ export default Ember.Object.extend({
     });
   },
 
+  product: function(id) {
+    var store = this.get('store');
+    var url = this.get('queryBuilder').productURL(id);
+    var fetcher = this;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      var alreadyFetched = store.getById('product', id);
+      if (alreadyFetched) {
+        resolve(alreadyFetched);
+      } else {
+        Ember.$.get(url).then(function(result) {
+          resolve(fetcher.productRecordFromItem(result));
+        });
+      }
+    });
+  },
+
   products: function(start, filters) {
     var url = this.get('queryBuilder').productsURL(start, filters);
     var store = this.get('store');
+    var fetcher = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
       Ember.$.get(url).then(function(result) {
         result.items.forEach(function(itemWrapper) {
-          var item = itemWrapper.item;
-          var record = $.extend({id: item.itemId}, item);
-          store.getById('product', item.itemId) || store.createRecord('product', record);
+          fetcher.productRecordFromItem(itemWrapper.item);
         });
 
         resolve(result);
       });
     });
+  },
+
+  productRecordFromItem: function(item) {
+    var store = this.get('store');
+    var record = $.extend({id: item.itemId}, item);
+    return store.getById('product', item.itemId) || store.createRecord('product', record);
   },
 
   queryBuilder: function() {

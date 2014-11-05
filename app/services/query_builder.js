@@ -28,5 +28,9 @@ export default Ember.Object.extend({
 
   bootstrapURL: function() {
     return 'https://pro2.wallapop.com/shnm-portlet/api/v1/application.json/appStart';
+  },
+
+  productURL: function(id) {
+    return 'https://pro2.wallapop.com/shnm-portlet/api/v1/item.json/' + id;
   }
 });
