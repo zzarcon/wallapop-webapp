@@ -9,6 +9,8 @@ export default Ember.Route.extend({
     priceMax: { refreshModel: true },
     orderBy: { refreshModel: true },
     orderType: { refreshModel: true },
+    latitude: { refreshModel: true },
+    longitude: { refreshModel: true },
   },
 
   model: function(_, transition) {
@@ -27,7 +29,8 @@ export default Ember.Route.extend({
     var filters = {
       categories: queryParams.categories && queryParams.categories.split(","),
       keywords: queryParams.keywords,
-      price: {min: queryParams.priceMin, max: queryParams.priceMax}
+      price: {min: queryParams.priceMin, max: queryParams.priceMax},
+      geolocation: {latitude: queryParams.latitude, longitude: queryParams.longitude}
     };
 
     this.set('filters', filters);

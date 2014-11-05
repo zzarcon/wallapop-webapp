@@ -12,6 +12,11 @@ export default Ember.Object.extend({
 
       filters.distance && params.push('distanceSegments=' + [filters.distance.min || 0, filters.distance.max].join("_"));
 
+      if (filters.geolocation && filters.geolocation.latitude && filters.geolocation.longitude) {
+        var lat = 'latitude=' + filters.geolocation.latitude, lon = 'longitude=' + filters.geolocation.longitude;
+        filters.geolocation && params.push(lat, lon);
+      }
+
       filters.keywords && params.push('keywords=' + filters.keywords);
     }
 
