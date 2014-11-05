@@ -53,7 +53,7 @@ export default Ember.ObjectController.extend({
 
       this.get('filterNames').forEach(function(paramToCheck) {
         var param = this.get(paramToCheck);
-        if (param && (!param.length || param.length > 0)) {
+        if (param && (param.length === undefined || param.length > 0)) {
           queryParams[paramToCheck] = this.get(paramToCheck);
         }
       }.bind(this));
