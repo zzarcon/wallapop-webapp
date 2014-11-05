@@ -9,7 +9,7 @@
 {{#view "filter-section" title="Categories" class="categories"}}
   {{#each category in allCategories}}
     <li>
-      {{input type="checkbox" checked=category.selected}} {{category.name}}
+      {{input type="checkbox" class="custom-checkbox" checked=category.selected}} {{category.name}}
     </li>
   {{/each}}
 {{/view}}

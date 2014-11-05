@@ -83,9 +83,14 @@
       display: none;
 
       li{
+        @include flexbox;
+        @include align-items(center);
         color: #5d5d5d;
         padding: 1rem;
         border-bottom: 1px solid #ebebeb;
+      }
+      .custom-checkbox{
+        margin-right: 1rem;
       }
     }
   }
