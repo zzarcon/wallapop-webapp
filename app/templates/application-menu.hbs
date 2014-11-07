@@ -1,6 +1,8 @@
 <div class="menu-content">
   <div class="menu-item collections">
-    <i class="fa fa-heart"></i> Collections
+    <div {{action "openCollections" target="view"}}>
+      <i class="fa fa-heart"></i> Collections
+    </div>
   </div>
   <div class="menu-item categories" {{action "toggleCategories" target="view"}}>
     <i class="fa fa-th-list"></i> Categories

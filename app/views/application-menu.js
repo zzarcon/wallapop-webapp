@@ -20,6 +20,11 @@ export default Ember.View.extend({
       this.toggleProperty('showCategories');
     },
 
+    openCollections: function() {
+      this.get('controller').transitionToRoute('collections');
+      this.hide();
+    },
+
     openCategory: function(id) {
       this.get('controller').transitionToRoute("products", {
         queryParams: {categories: id}

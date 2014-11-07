@@ -1,3 +1,27 @@
 #collections{
+  .collection{
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(center);
+    width: 18rem;
+    background-repeat: no-repeat;
+    margin: 0.5rem auto;
+    text-align: center;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-position: center;
+    height: 7rem;
+    white-space: nowrap;
+    text-shadow: 1px 2px 6px black;
+    overflow: hidden;
 
+    .title{
+      text-decoration: underline;
+      font-size: 2rem;
+    }
+    .item-count{
+      margin-top: 0.5rem;
+    }
+  }
 }

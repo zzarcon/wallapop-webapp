@@ -16,7 +16,12 @@ export default Ember.Object.extend({
           store.createRecord('collection', {
             id: collection.collectionId,
             title: collection.title,
-            description: collection.description
+            description: collection.description,
+            featuredItems: collection.featuredItems,
+            images: collection.images,
+            inDrawer: collection.inDrawer,
+            numItems: collection.numItems,
+            numSold: collection.numSold
           });
         });
 
