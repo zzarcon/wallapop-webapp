@@ -14,7 +14,6 @@ export default Ember.View.extend({
     var html = '<ul class="bxslider">';
     images.forEach(function(img) {
       html += '<li><img class="product-img" src="' + img.bigURL + '"></li>';
-      // html += '<li><div class="product-img" style="background-image: url(' + img.bigURL + ');"></div></li>';
     });
     return html + '</ul>';
   }.property(),
