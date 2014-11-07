@@ -14,7 +14,7 @@
     "ember-cli-test-loader": "rjackson/ember-cli-test-loader#0.0.2",
     "ember-backdoor": "zzarcon/ember-backdoor#master",
     "moment": "*",
-    "sass-flex-mixin": "git@github.com:mastastealth/sass-flex-mixin.git",
+    "sass-flex-mixin": "mastastealth/sass-flex-mixin#43d947a924cba48fa1f3265f80066815c63bfdca",
     "font-awesome": "*",
     "bxslider-4": "*",
     "leaflet": "*",
