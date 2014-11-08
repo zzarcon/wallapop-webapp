@@ -6,7 +6,7 @@
   Where are you searching for it?
   <i class="fa fa-chevron-right arrow"></i>
 </div>
-{{#view "filter-section" title="Categories" class="categories"}}
+{{#view "filter-section" title=view.categoriesTitle class="categories"}}
   {{#each category in allCategories}}
     <li>
       {{input type="checkbox" class="custom-checkbox" checked=category.selected}} {{category.name}}
@@ -27,11 +27,11 @@
     Without limit
   </li>
 {{/view}}
-{{#view "filter-section" clickable=false title="Price" class="price"}}
+{{#view "filter-section" clickable=false title=view.pricesTitle class="price"}}
   <li>From {{input type="text" value=priceMin}}</li>
   <li>To {{input type="text" value=priceMax}}</li>
 {{/view}}
-{{#view "filter-section" title="Order by" class="order"}}
+{{#view "filter-section" title=view.orderTitle class="order"}}
   {{#each order in orders}}
   <li {{bind-attr class=":clickable order.selected:selected"}} {{action "selectOrder" order}}>
     {{order.title}}

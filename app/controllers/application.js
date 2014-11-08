@@ -39,10 +39,7 @@ export default Ember.ObjectController.extend({
 
   actions: {
     selectOrder: function(order) {
-      this.get('store').all('order').forEach(function(ord) {
-        ord.set('selected', false);
-      });
-
+      this.get('store').all('order').setEach('selected', false);
       order.set('selected', true);
       this.set('orderBy', order.get('orderBy'));
       this.set('orderType', order.get('orderType'));
