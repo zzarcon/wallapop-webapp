@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import ProductFetcher from '../../services/product_fetcher';
 
 export default Ember.Route.extend({
   queryParams: {
@@ -16,12 +15,6 @@ export default Ember.Route.extend({
   model: function(_, transition) {
     return this.get('store').all('product');
   },
-
-  productFetcher: function() {
-    this._productFetcher = this._productFetcher || ProductFetcher.create({store: this.get('store')});
-    return this._productFetcher;
-  }.property(),
-
 
   beforeModel: function(transition) {
     var fetcher = this.get('productFetcher');
