@@ -8,8 +8,10 @@
 </div>
 {{#view "filter-section" title=view.categoriesTitle class="categories"}}
   {{#each category in allCategories}}
-    <li>
-      {{input type="checkbox" class="custom-checkbox" checked=category.selected}} {{category.name}}
+    <li {{bind-attr class="category.selected"}} {{action "selectCategory" category}}>
+      <div {{bind-attr class=":custom-checkbox category.selected:checked"}}>
+        <i class="fa fa-check"></i>
+      </div> {{category.name}}
     </li>
   {{/each}}
 {{/view}}
@@ -28,12 +30,12 @@
   </li>
 {{/view}}
 {{#view "filter-section" clickable=false title=view.pricesTitle class="price"}}
-  <li>From {{input type="text" value=priceMin}}</li>
-  <li>To {{input type="text" value=priceMax}}</li>
+  <li>From {{input type="number" value=priceMin}}</li>
+  <li>To {{input type="number" value=priceMax}}</li>
 {{/view}}
 {{#view "filter-section" title=view.orderTitle class="order"}}
   {{#each order in orders}}
-  <li {{bind-attr class=":clickable order.selected:selected"}} {{action "selectOrder" order}}>
+  <li {{bind-attr class=":clickable order.selected"}} {{action "selectOrder" order}}>
     {{order.title}}
   </li>
   {{/each}}

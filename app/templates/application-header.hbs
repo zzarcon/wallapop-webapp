@@ -7,8 +7,10 @@
   {{#link-to "products"}}
     <div class="logo"></div>
   {{/link-to}}
-  {{#if view.showFilters}}
-    <i class="fa fa-check search-button" {{action "filterProducts" target="view"}}></i>
-  {{/if}}
-  <i class="fa fa-search search-bar-button" {{action "toggleSearchFilters" target="view"}}></i>
+  <div class="right-elements">
+    {{#if view.showFilters}}
+      <i class="fa fa-check search-button" {{action "filterProducts" target="view"}}></i>
+    {{/if}}
+    <i class="fa fa-search search-bar-button" {{action "toggleSearchFilters" target="view"}}></i>
+  </div>
 </header>

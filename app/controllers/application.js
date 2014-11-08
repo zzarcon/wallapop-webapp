@@ -38,6 +38,10 @@ export default Ember.ObjectController.extend({
   }.observes('currentRouteName'),
 
   actions: {
+    selectCategory: function(category) {
+      category.toggleProperty('selected');
+    },
+
     selectOrder: function(order) {
       this.get('store').all('order').setEach('selected', false);
       order.set('selected', true);

@@ -6,15 +6,20 @@
   color: white;
   outline: none;
 
-  &:checked{
+  i{
+    display: none;
+    margin: 0.2rem;
+    font-size: 0.9rem;
+  }
+
+  &.checked{
     border-color: transparent;
     background-color: #00c9c5;
     position: relative;
     cursor: pointer;
 
-    &:before{
-      @include absolute-top-left(0.2rem, 0.2rem);
-      content: "√";
+    i{
+      display: block;
     }
   }
 }

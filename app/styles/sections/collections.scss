@@ -1,21 +1,34 @@
 #collections{
+  ul{
+    text-align: center;
+  }
+
   .collection{
-    @include flexbox;
-    @include flex-direction(column);
-    @include justify-content(center);
     width: 18rem;
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     margin: 0.5rem auto;
     text-align: center;
     color: white;
     padding: 1rem;
     border-radius: 0.5rem;
-    background-position: center;
     height: 7rem;
-    white-space: nowrap;
     text-shadow: 1px 2px 6px black;
     overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+    transition: box-shadow 0.5s;
 
+    &:hover{
+      box-shadow: 1px 1px 12px 0px black;
+    }
+    .collection-wrapper{
+      @include flexbox;
+      @include flex-direction(column);
+      @include justify-content(center);
+      height: 100%;
+    }
     .title{
       text-decoration: underline;
       font-size: 2rem;
