@@ -7,7 +7,7 @@ export default DS.Model.extend({
   mainImage: DS.attr('object'),
   salePrice: DS.attr('number'),
   categories: DS.attr('array'),
-  images: DS.attr(),
+  image: DS.attr(),
   sellerUser: DS.attr(),
 
   smallImage: Ember.computed.alias('mainImage.smallURL'),

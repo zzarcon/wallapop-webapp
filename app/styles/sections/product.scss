@@ -3,20 +3,38 @@
   margin: auto;
   $light-gray: #f4efef;
 
-  .user-info{
-    @include absolute-top-left;
+  .product-carrousel{
+    position: relative;
+  }
 
+  .user-info{
+    @include absolute-bottom-left(2rem, 1rem);
+
+    &:hover{
+      .user-img{
+        transform: rotate(360deg);
+      }
+    }
     .user-img{
+      @include square(3rem);
+      transition: all 0.5s;
+      cursor: pointer;
       background-color: $light-gray;
       border: 2px solid white;
       width: 3rem;
       border-radius: 100%;
       position: absolute;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
     .user-name{
-      padding: 0.6rem;
+      cursor: pointer;
       background-color: rgba(white, 0.8);
+      padding: 0.5rem 0.5rem 0.5rem 4rem;
       border-radius: 0 1rem 1rem 0;
+      margin-top: 0.5rem;
+      margin-left: 0.5rem;
     }
   }
 
