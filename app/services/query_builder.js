@@ -1,6 +1,8 @@
+var host = 'https://pro2.wallapop.com/shnm-portlet/api/v1/';
+
 export default Ember.Object.extend({
 
-  baseSearchURL: 'https://pro2.wallapop.com/shnm-portlet/api/v1/item.json/search7',
+  baseSearchURL: host + 'item.json/search7',
 
   productsURL: function(startItem, filters, order) {
     var params = [];
@@ -32,10 +34,14 @@ export default Ember.Object.extend({
   },
 
   bootstrapURL: function() {
-    return 'https://pro2.wallapop.com/shnm-portlet/api/v1/application.json/appStart';
+    return host + 'application.json/appStart';
   },
 
   productURL: function(id) {
-    return 'https://pro2.wallapop.com/shnm-portlet/api/v1/item.json/' + id;
+    return host + 'item.json/' + id;
+  },
+
+  userURL: function(id) {
+    return host + 'user.json/' + id;
   }
 });

@@ -2,7 +2,7 @@ import Ember from "ember";
 
 export default Ember.Route.extend({
   beforeModel: function(transition) {
-    return Ember.RSVP.all([this.get('productFetcher').bootstrap(), this.get('geolocator.geolocation')]);
+    return Ember.RSVP.all([this.get('fetcher').bootstrap(), this.get('geolocator.geolocation')]);
   },
 
   setupController: function(controller, model, transition) {

@@ -77,6 +77,29 @@ export default Ember.Object.extend({
     return store.getById('product', item.itemId) || store.createRecord('product', record);
   },
 
+  userRecordFromUser: function(user) {
+    var store = this.get('store');
+    var record = $.extend({id: user.userId}, user);
+    return store.getById('user', user.userId) || store.createRecord('user', record);
+  },
+
+  user: function(id) {
+    var store = this.get('store');
+    var url = this.get('queryBuilder').userURL(id);
+    var fetcher = this;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      var alreadyFetched = store.getById('user', id);
+      if (alreadyFetched) {
+        resolve(alreadyFetched);
+      } else {
+        Ember.$.get(url).then(function(result) {
+          resolve(fetcher.userRecordFromUser(result));
+        });
+      }
+    });
+  },
+
   queryBuilder: function() {
     return this._queryBuilder || (this._queryBuilder = new QueryBuilder());
   }.property()

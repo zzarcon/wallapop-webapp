@@ -17,7 +17,7 @@ export default Ember.Route.extend({
   },
 
   beforeModel: function(transition) {
-    var fetcher = this.get('productFetcher');
+    var fetcher = this.get('fetcher');
     var queryParams = transition.queryParams;
     var filters = {
       categories: queryParams.categories && queryParams.categories.split(","),
@@ -38,7 +38,7 @@ export default Ember.Route.extend({
 
       if (!this.get('controller.loadingMore')) {
         this.set('controller.loadingMore', true);
-        this.get('productFetcher').products(start, this.get('filters')).then(function(records) {
+        this.get('fetcher').products(start, this.get('filters')).then(function(records) {
           this.set('controller.loadingMore', false);
         }.bind(this));
       }
