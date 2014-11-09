@@ -28,6 +28,7 @@
       @include flex-direction(column);
       @include justify-content(center);
       height: 100%;
+      color: white;
     }
     .title{
       text-decoration: underline;
@@ -35,6 +36,60 @@
     }
     .item-count{
       margin-top: 0.5rem;
+    }
+  }
+
+  //
+  //SHOW
+  //
+  #collection-show{
+    max-width: 450px;
+    margin: 0 auto;
+
+    .collection-cover{
+      @include flexbox;
+      @include flex-direction(column);
+      @include justify-content(center);
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 1rem;
+      color: white;
+      height: 15rem;
+      position: relative;
+    }
+    .collection-title, .collection-description{
+      text-shadow: 2px 2px 6px black;
+    }
+    .collection-title{
+      font-size: 2rem;
+    }
+    .collection-description{
+
+    }
+    .collection-items{
+      @include absolute-bottom-left(1rem, 1rem);
+      background-color: #009589;
+      border-radius: 1rem;
+      width: 9rem;
+      padding: 0.5rem;
+      opacity: 0.9;
+    }
+    .featured-products{
+      color: #878787;
+      margin-top: 1rem;
+    }
+    .items{
+      @include flexbox;
+      .item{
+        @include flex(1);
+        border-radius: 0.8rem;
+        margin: 0.5rem;
+        overflow: hidden;
+
+        img{
+          width: 100%;
+        }
+      }
     }
   }
 }

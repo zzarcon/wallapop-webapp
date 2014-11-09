@@ -9,7 +9,9 @@ Router.map(function() {
     this.route('show', {path: '/:productId'});
   });
   this.route('about');
-  this.route('collections');
+  this.resource('collections', function() {
+    this.route('show', {path: '/:collectionId'})
+  });
 });
 
 export default Router;

@@ -1,0 +1,19 @@
+<div class="collection-cover" style="background-image: url({{unbound images.listImage.xlargeURL}});">
+  <div class="collection-title">{{title}}</div>
+  <div class="collection-description">{{description}}</div>
+  <div class="collection-items">
+    {{numItems}} products <i class="fa fa-arrow-right"></i>
+  </div>
+</div>
+<div class="featured-products">
+  <header>
+    <i class="fa fa-star"></i> Featured products
+  </header>
+  <div class="items">
+    {{#each product in featuredItems}}
+      {{#link-to "products.show" product.itemId class="item"}}
+        <img {{bind-attr src="product.images.firstObject.smallURL"}}>
+      {{/link-to}}
+    {{/each}}
+  </div>
+</div>

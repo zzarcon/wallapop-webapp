@@ -1,6 +1,6 @@
 <li class="collection" style="background-image: url({{unbound collection.listImage}});">
-  <div class="collection-wrapper">
+  {{#link-to "collections.show" collection.id class="collection-wrapper"}}
     <div class="title">{{collection.title}}</div>
     <div class="item-count">{{collection.numItems}} products</div>
-  </div>
+  {{/link-to}}
 </li>

@@ -4,7 +4,7 @@ import DS from "ember-data";
 export default DS.Model.extend({
   title: DS.attr('string'),
   description: DS.attr('string'),
-  featureItems: DS.attr(),
+  featuredItems: DS.attr(),
   images: DS.attr('object'),
   inDrawer: DS.attr('boolean'),
   numItems: DS.attr('number'),
