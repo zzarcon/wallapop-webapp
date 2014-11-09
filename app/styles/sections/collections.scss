@@ -86,8 +86,11 @@
         margin: 0.5rem;
         overflow: hidden;
 
-        img{
-          width: 100%;
+        .item-img{
+          @include square(9rem);
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
         }
       }
     }

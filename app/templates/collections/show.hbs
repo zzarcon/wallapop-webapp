@@ -12,7 +12,7 @@
   <div class="items">
     {{#each product in featuredItems}}
       {{#link-to "products.show" product.itemId class="item"}}
-        <img {{bind-attr src="product.images.firstObject.smallURL"}}>
+        <div class="item-img" style="background-image: url({{unbound product.images.firstObject.smallURL}});"></div>
       {{/link-to}}
     {{/each}}
   </div>
