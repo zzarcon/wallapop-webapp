@@ -1,10 +1,12 @@
 <div class="product-carrousel">
   {{{view.sliderHTML}}}
-  <div class="user-info">
-    <div class="user-img" style="background-image: url({{unbound sellerUser.image.smallURL}})">
+  {{#link-to "user" sellerUser.userId}}
+    <div class="user-info">
+      <div class="user-img" style="background-image: url({{unbound sellerUser.image.smallURL}})">
+      </div>
+      <div class="user-name">{{sellerUser.microName}}</div>
     </div>
-    <div class="user-name">{{sellerUser.microName}}</div>
-  </div>
+  {{/link-to}}
 </div>
 <div class="product-info-wrapper">
   <div class="product-info block">
