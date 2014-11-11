@@ -56,17 +56,17 @@ export default Ember.ObjectController.extend({
     },
 
     filterProducts: function() {
-      var queryParams = {};
+      var params = {};
 
       queryParams.forEach(function(paramToCheck) {
         var param = this.get(paramToCheck);
         if (param && (param.length === undefined || param.length > 0)) {
-          queryParams[paramToCheck] = this.get(paramToCheck);
+          params[paramToCheck] = this.get(paramToCheck);
         }
       }.bind(this));
 
       this.transitionToRoute("products", {
-        queryParams: queryParams
+        queryParams: params
       });
     }
   }
