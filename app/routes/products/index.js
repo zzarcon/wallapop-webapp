@@ -32,6 +32,13 @@ export default Ember.Route.extend({
     return fetcher.products(null, filters);
   },
 
+  setupController: function(controller, model, transition) {
+    var hasQueryParams = Object.keys(transition.queryParams).length;
+    controller.set('hasSearchParams', hasQueryParams);
+
+    return this._super.apply(this, arguments);
+  },
+
   actions: {
     loadMore: function() {
       var start = this.get('controller.length');
