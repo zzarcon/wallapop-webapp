@@ -1,4 +1,9 @@
-<div class="filter-legend">Displaying products within 1 mile for you</div>
+<div class="filter-legend">
+  Displaying products within 1 mile for you
+  {{#if hasSearchParams}}
+    <i class="fa fa-times" {{action "resetFilters"}}></i>
+  {{/if}}
+</div>
 <div id="container">
   {{#each product in this}}
     {{#link-to 'products.show' product.id}}

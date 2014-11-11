@@ -1,9 +1,20 @@
 import Ember from 'ember';
+import queryParams from '../../query-params';
 
 export default Ember.ArrayController.extend({
-  queryParams: ['categories', 'keywords', 'priceMin', 'priceMax', 'orderBy', 'orderType', 'latitude', 'longitude'],
-  selectedOrder: "",
+  needs: ['application'],
+  queryParams: queryParams,
+
+  categories: "",
   keywords: "",
+  priceMin: "",
+  priceMax: "",
+  orderBy: "",
+  orderType: "",
+  latitude: "",
+  longitude: "",
+
+  hasSearchParams: false,
 
   _latitude: Ember.computed.alias('geolocation.latitude'),
   _longitude: Ember.computed.alias('geolocation.longitude'),
@@ -21,4 +32,18 @@ export default Ember.ArrayController.extend({
       promise: promise
     });
   }.property(),
+
+  actions: {
+    resetFilters: function() {
+      this.set('hasSearchParams', false);
+
+      //Reset app params
+      this.get('controllers.application').resetSearchParams();
+
+      //Reset URL params
+      queryParams.forEach(function(paramName) {
+        this.set(paramName, '');
+      }, this);
+    }
+  }
 });

@@ -1,17 +1,14 @@
 import Ember from "ember";
 import AppStatus from "../app-status";
+import queryParams from '../query-params';
 
 export default Ember.ObjectController.extend({
   setupFilters: function() {
     this.set('content', {});
-    this.get('filterNames').forEach(function(filterName) {
+    queryParams.forEach(function(filterName) {
       this.get(filterName) || this.set(filterName, null);
     }.bind(this));
   }.on('init'),
-
-  filterNames: function() {
-    return "keywords priceMin priceMax orderBy orderType categories".split(" ");
-  }.property(),
 
   products: function(){
     return this.get('container').lookup('controller:products.index');
@@ -37,6 +34,15 @@ export default Ember.ObjectController.extend({
     AppStatus.set('currentRouteName', this.get('currentRouteName'));
   }.observes('currentRouteName'),
 
+  resetSearchParams: function() {
+    var params = queryParams.copy().removeObject("categories");
+    this.get('store').all('category').setEach('selected', false);
+
+    params.forEach(function(paramName) {
+      this.set(paramName, '');
+    }, this);
+  },
+
   actions: {
     selectCategory: function(category) {
       category.toggleProperty('selected');
@@ -50,17 +56,17 @@ export default Ember.ObjectController.extend({
     },
 
     filterProducts: function() {
-      var queryParams = {};
+      var params = {};
 
-      this.get('filterNames').forEach(function(paramToCheck) {
+      queryParams.forEach(function(paramToCheck) {
         var param = this.get(paramToCheck);
         if (param && (param.length === undefined || param.length > 0)) {
-          queryParams[paramToCheck] = this.get(paramToCheck);
+          params[paramToCheck] = this.get(paramToCheck);
         }
       }.bind(this));
 
       this.transitionToRoute("products", {
-        queryParams: queryParams
+        queryParams: params
       });
     }
   }
