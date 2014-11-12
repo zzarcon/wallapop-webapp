@@ -1,16 +1,13 @@
 import Ember from 'ember';
+import queryParams from '../../query-params';
+
+var params = {};
+queryParams.forEach(function(paramName) {
+  params[paramName] = {refreshModel: true};
+});
 
 export default Ember.Route.extend({
-  queryParams: {
-    categories: { refreshModel: true },
-    keywords: { refreshModel: true },
-    priceMin: { refreshModel: true },
-    priceMax: { refreshModel: true },
-    orderBy: { refreshModel: true },
-    orderType: { refreshModel: true },
-    latitude: { refreshModel: true },
-    longitude: { refreshModel: true },
-  },
+  queryParams: params,
 
   model: function(_, transition) {
     return this.get('store').all('product');
