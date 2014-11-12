@@ -2,6 +2,8 @@ import Ember from 'ember';
 import QueryBuilder from './query_builder';
 
 export default Ember.Object.extend({
+  fetchingProducts: false,
+
   bootstrap: function() {
     var bootstrapURL = this.get('queryBuilder').bootstrapURL();
     var store = this.get('store');
@@ -60,12 +62,14 @@ export default Ember.Object.extend({
     var store = this.get('store');
     var fetcher = this;
 
+    fetcher.set('fetchingProducts', true);
     return new Ember.RSVP.Promise(function(resolve, reject) {
       Ember.$.get(url).then(function(result) {
         result.items.forEach(function(itemWrapper) {
           fetcher.productRecordFromItem(itemWrapper.item);
         });
 
+        fetcher.set('fetchingProducts', false);
         resolve(result);
       });
     });

@@ -14,6 +14,8 @@ export default Ember.ArrayController.extend(params, {
   _latitude: Ember.computed.alias('geolocation.latitude'),
   _longitude: Ember.computed.alias('geolocation.longitude'),
 
+  isLoading: Ember.computed.alias('fetcher.fetchingProducts'),
+
   geolocation: function() {
     var controller = this;
 
