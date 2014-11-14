@@ -1,23 +1,20 @@
 import Ember from 'ember';
 import queryParams from '../../query-params';
 
-export default Ember.ArrayController.extend({
+var params = {};
+queryParams.forEach(function(paramName) {
+  params[paramName] = "";
+});
+
+export default Ember.ArrayController.extend(params, {
   needs: ['application'],
   queryParams: queryParams,
-
-  categories: "",
-  keywords: "",
-  priceMin: "",
-  priceMax: "",
-  orderBy: "",
-  orderType: "",
-  latitude: "",
-  longitude: "",
-
   hasSearchParams: false,
 
   _latitude: Ember.computed.alias('geolocation.latitude'),
   _longitude: Ember.computed.alias('geolocation.longitude'),
+
+  isLoading: Ember.computed.alias('fetcher.fetchingProducts'),
 
   geolocation: function() {
     var controller = this;

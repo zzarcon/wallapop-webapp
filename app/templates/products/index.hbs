@@ -5,23 +5,22 @@
   {{/if}}
 </div>
 <div id="container">
-  {{#each product in this}}
-    {{#link-to 'products.show' product.id}}
-      <div class="item product">
-        <div class="product-image" style="background-image: url({{unbound product.smallImage}})"></div>
-        <footer>
-          <div class="title">{{product.title}}</div>
-          <div class="price">{{product.salePrice}} €</div>
-        </footer>
-      </div>
-    {{/link-to}}
-  {{/each}}
+  {{#if isLoading}}
+    {{partial "walla-loading"}}
+  {{else}}
+    {{#each product in this}}
+      {{#link-to 'products.show' product.id}}
+        <div class="item product">
+          <div class="product-image" style="background-image: url({{unbound product.smallImage}})"></div>
+          <footer>
+            <div class="title">{{product.title}}</div>
+            <div class="price">{{product.salePrice}} €</div>
+          </footer>
+        </div>
+      {{/link-to}}
+    {{/each}}
+  {{/if}}
 </div>
 {{#if loadingMore}}
-  <div class="loader-wrapper">
-    <span class="ouro ouro3">
-      <span class="left"><span class="anim"></span></span>
-      <span class="right"><span class="anim"></span></span>
-    </span>
-  </div>
+  {{partial "walla-loading"}}
 {{/if}}
