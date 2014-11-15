@@ -1,0 +1,69 @@
+#user {
+  $gray: #e0e0e2;
+  @include flexbox;
+  .column {
+    @include flex(1);
+    padding: 1rem;
+  }
+  .user-stats {
+    img {
+      margin: 0 auto;
+      border-radius: 100%;
+      border: 2px solid #e7e7e7;
+      display: block;
+      width: 8rem;
+    }
+  }
+  .item-count {
+    text-align: center;
+    margin-top: 1rem;
+    margin: 0 auto;
+    width: 8rem;
+    p:first-child {
+      border-bottom: 1px solid $gray;
+      padding-bottom: 0.5rem;
+    }
+  }
+  .user-info {
+    .user-name {
+      margin-bottom: 1rem;
+      p:first-child {
+        font-weight: bold;
+      }
+    }
+  }
+  .profile-verification {
+    border-bottom: 1px solid $gray;
+    padding-bottom: 1rem;
+    p:first-child {
+      color: #d1d1d1;
+    }
+    i {
+      padding: 0.5rem;
+      width: 1rem;
+      opacity: 0.8;
+      color: $gray;
+      border: 1px solid $gray;
+      border-radius: 100%;
+      text-align: center;
+      &.verified {
+        color: $navyblue;
+        border-color: $navyblue;
+      }
+    }
+  }
+  .received-reviews {
+    font-weight: bold;
+    span {
+      border-radius: 100%;
+      padding: 1rem;
+      background-color: #ccc;
+      display: inline-block;
+      width: 0.8rem;
+    }
+    i {
+      height: 100%;
+      float: right;
+    }
+  }
+}
