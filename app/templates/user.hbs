@@ -1,0 +1,30 @@
+<div class="column user-stats">
+	<div>
+		<img {{bind-attr src="smallImage"}}>
+	</div>
+	<div class="item-count">
+    <p>{{sellingCount}} for sale</p>
+    <p>{{selledCount}} sold</p>
+	</div>
+</div>
+<div class="column user-info">
+  <div class="user-name">
+    <p>{{microName}}</p>
+    <p>{{location.city}}</p>
+  </div>
+  <div class="profile-verification">
+    <p>Profile verified</p>
+    <div>
+      <i {{bind-attr class=":fa :fa-envelope isEmailVerified:verified"}}></i>
+      <i {{bind-attr class=":fa :fa-phone isCellPhoneVerified:verified"}}></i>
+      <i {{bind-attr class=":fa :fa-facebook isFacebookVerified:verified"}}></i>
+      <i {{bind-attr class=":fa :fa-google isGooglePlusVerified:verified"}}></i>
+    </div>
+  </div>
+  <div class="received-reviews">
+    <p>
+      <span>{{receivedReviewsCount}}</span> Reviews
+      <i class="fa fa-angle-right"}}></i>
+    </p>
+  </div>
+</div>
