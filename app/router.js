@@ -9,7 +9,7 @@ Router.map(function() {
     this.route('show', {path: '/:productId'});
   });
   this.resource('collections', function() {
-    this.route('show', {path: '/:collectionId'})
+    this.route('show', {path: '/:collectionId'});
   });
   this.route('user', {path: 'user/:userId'});
 });

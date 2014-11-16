@@ -9,7 +9,7 @@ queryParams.forEach(function(paramName) {
 export default Ember.Route.extend({
   queryParams: params,
 
-  model: function(_, transition) {
+  model: function() {
     return this.get('store').all('product');
   },
 
@@ -42,7 +42,7 @@ export default Ember.Route.extend({
 
       if (!this.get('controller.loadingMore')) {
         this.set('controller.loadingMore', true);
-        this.get('fetcher').products(start, this.get('filters')).then(function(records) {
+        this.get('fetcher').products(start, this.get('filters')).then(function() {
           this.set('controller.loadingMore', false);
         }.bind(this));
       }

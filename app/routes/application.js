@@ -1,7 +1,7 @@
 import Ember from "ember";
 
 export default Ember.Route.extend({
-  beforeModel: function(transition) {
+  beforeModel: function() {
     return Ember.RSVP.all([this.get('fetcher').bootstrap(), this.get('geolocator.geolocation')]);
   },
 
@@ -24,7 +24,7 @@ export default Ember.Route.extend({
 
     if (orderBy && orderType) {
       this.get('store').all('order').filter(function(order) {
-        return order.get('orderType') == orderType && order.get('orderBy') == orderBy;
+        return order.get('orderType') === orderType && order.get('orderBy') === orderBy;
       }).forEach(function(order) {
         order.set('selected', true);
       });

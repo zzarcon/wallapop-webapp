@@ -1,3 +1,5 @@
+import Ember from "ember";
+
 var host = 'https://pro2.wallapop.com/shnm-portlet/api/v1/';
 
 export default Ember.Object.extend({

@@ -1,5 +1,4 @@
 import Geolocator from '../services/geolocator';
-import Ember from 'ember';
 
 export default {
   name: 'geolocator',
