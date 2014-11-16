@@ -10,7 +10,7 @@ Router.map(function() {
   });
   this.route('about');
   this.resource('collections', function() {
-    this.route('show', {path: '/:collectionId'})
+    this.route('show', {path: '/:collectionId'});
   });
 });
 

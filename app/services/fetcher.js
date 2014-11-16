@@ -8,7 +8,7 @@ export default Ember.Object.extend({
     var bootstrapURL = this.get('queryBuilder').bootstrapURL();
     var store = this.get('store');
 
-    return new Ember.RSVP.Promise(function(resolve, reject) {
+    return new Ember.RSVP.Promise(function(resolve) {
       Ember.$.get(bootstrapURL).then(function(result) {
         result.categories.forEach(function(category) {
           store.createRecord('category', {id: category.categoryId, name: category.name});
@@ -45,7 +45,7 @@ export default Ember.Object.extend({
     var url = this.get('queryBuilder').productURL(id);
     var fetcher = this;
 
-    return new Ember.RSVP.Promise(function(resolve, reject) {
+    return new Ember.RSVP.Promise(function(resolve) {
       var alreadyFetched = store.getById('product', id);
       if (alreadyFetched) {
         resolve(alreadyFetched);
@@ -59,11 +59,10 @@ export default Ember.Object.extend({
 
   products: function(start, filters) {
     var url = this.get('queryBuilder').productsURL(start, filters);
-    var store = this.get('store');
     var fetcher = this;
 
     fetcher.set('fetchingProducts', true);
-    return new Ember.RSVP.Promise(function(resolve, reject) {
+    return new Ember.RSVP.Promise(function(resolve) {
       Ember.$.get(url).then(function(result) {
         result.items.forEach(function(itemWrapper) {
           fetcher.productRecordFromItem(itemWrapper.item);
@@ -92,7 +91,7 @@ export default Ember.Object.extend({
     var url = this.get('queryBuilder').userURL(id);
     var fetcher = this;
 
-    return new Ember.RSVP.Promise(function(resolve, reject) {
+    return new Ember.RSVP.Promise(function(resolve) {
       var alreadyFetched = store.getById('user', id);
       if (alreadyFetched) {
         resolve(alreadyFetched);

@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import Fetcher from '../services/fetcher';
 
 export default {
@@ -10,4 +9,4 @@ export default {
     application.inject('route', 'fetcher', 'fetcher:main');
     application.inject('controller', 'fetcher', 'fetcher:main');
   }
-}
+};

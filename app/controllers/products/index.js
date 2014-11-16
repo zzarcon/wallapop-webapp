@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import DS from 'ember-data';
 import queryParams from '../../query-params';
 
 var params = {};
@@ -17,8 +18,6 @@ export default Ember.ArrayController.extend(params, {
   isLoading: Ember.computed.alias('fetcher.fetchingProducts'),
 
   geolocation: function() {
-    var controller = this;
-
     var promise = new Ember.RSVP.Promise(function(resolve) {
       navigator.geolocation.getCurrentPosition(function(location) {
         resolve(location.coords);
