@@ -1,19 +1,30 @@
 import Ember from "ember";
 
 //TODO Put this in config
-L.Icon.Default.imagePath = 'images/';
+L.Icon.Default.imagePath = 'assets/images';
+
+var marker = EmberLeaflet.MarkerCollectionLayer.extend({
+  content: function() {
+    var lat = this.get('controller.latitude');
+    var lon = this.get('controller.longitude');
+
+    return [{
+      location: L.latLng(lat, lon)
+    }];
+  }.property('controller.latitude', 'controller.longitude')
+});
 
 export default EmberLeaflet.MapView.extend({
-  location: Ember.computed.alias('controller.sellerUser.location'),
   zoom: 15,
   options: {
     maxZoom: 19, minZoom: 0
   },
+  childLayers: [EmberLeaflet.DefaultTileLayer, marker],
 
   center: function() {
     return L.latLng(
-      this.get('location.approximatedLatitude'),
-      this.get('location.approximatedLongitude')
+      this.get('controller.latitude'),
+      this.get('controller.longitude')
     );
-  }.property('location.approximatedLatitude', 'location.approximatedLongitude'),
+  }.property('controller.latitude', 'controller.longitude'),
 });
