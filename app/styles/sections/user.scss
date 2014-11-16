@@ -18,10 +18,16 @@
     text-align: center;
     margin-top: 1rem;
     margin: 0 auto;
-    width: 8rem;
+    width: 15rem;
+
+    p{
+      margin-top: 0;
+    }
     p:first-child {
+      margin-top: 1rem;
       border-bottom: 1px solid $gray;
       padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
     }
   }
   .user-info {
@@ -53,17 +59,22 @@
     }
   }
   .received-reviews {
-    font-weight: bold;
     span {
       border-radius: 100%;
-      padding: 1rem;
-      background-color: #ccc;
+      padding: 0.7rem;
+      background-color: #efefef;
       display: inline-block;
-      width: 0.8rem;
+      width: 1.1rem;
+      text-align: center;
+      margin-right: 0.6rem;
     }
     i {
       height: 100%;
       float: right;
+      color: #858585;
+      font-size: 1.5rem;
+      margin-top: 0.6rem;
+      margin-right: 1rem;
     }
   }
 }
