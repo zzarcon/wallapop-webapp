@@ -1,4 +1,4 @@
-import Ember from "ember";
+// import Ember from "ember";
 
 //TODO Put this in config
 L.Icon.Default.imagePath = 'assets/images';
