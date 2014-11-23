@@ -6,7 +6,7 @@ export default Ember.View.extend({
   showFilters: false,
 
   removeInitLoader: function() {
-    $('#init-loader').remove();
+    Ember.$('#init-loader').remove();
   }.on('didInsertElement'),
 
   actions: {
