@@ -9,7 +9,9 @@ export default Ember.View.extend({
     var orderedByText = this.get('appController.orderBy') ? ' ordered by ' + this.get('appController.orderBy') : '';
     var categoriesText = !categoriesLength ? '' : categoriesLength === 1 ? 'from ' + categories.get('firstObject.name') : 'from ' + categoriesLength + ' categories';
 
-    return 'Displaying products ' + categoriesText + orderedByText;
+    if (categoriesText || orderedByText) {
+      return 'Displaying products ' + categoriesText + orderedByText;
+    }
   }.property('appController._selectedCategories.@each', 'appController.orderBy')
 
 });

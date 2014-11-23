@@ -1,9 +1,11 @@
-<div class="filter-legend">
-{{view.currentCategoriesResume}}
-  {{#if hasSearchParams}}
-    <i class="fa fa-times" {{action "resetFilters"}}></i>
-  {{/if}}
-</div>
+{{#if view.currentCategoriesResume}}
+  <div class="filter-legend">
+    {{view.currentCategoriesResume}}
+    {{#if hasSearchParams}}
+      <i class="fa fa-times" {{action "resetFilters"}}></i>
+    {{/if}}
+  </div>
+{{/if}}
 <div id="container">
   {{#if isLoading}}
     {{partial "walla-loading"}}
