@@ -5,11 +5,11 @@ export default Ember.View.extend({
   elementId: "products",
 
   bindToScroll: function() {
-    $("#application").on('scroll', this.scroll.bind(this));
+    Ember.$("#application").on('scroll', this.scroll.bind(this));
   }.on('didInsertElement'),
 
   unbindFromScroll: function() {
-    $("#application").off('scroll', this.scroll.bind(this));
+    Ember.$("#application").off('scroll', this.scroll.bind(this));
   }.on('willDestroy'),
 
   scroll: function() {
@@ -17,9 +17,9 @@ export default Ember.View.extend({
       return;
     }
 
-    var $app = $("#application");
+    var $app = Ember.$("#application");
 
-    if ($app.scrollTop() + $(window).height() === $app.prop('scrollHeight')) {
+    if ($app.scrollTop() + Ember.$(window).height() === $app.prop('scrollHeight')) {
       this.get('controller').send('loadMore');
     }
   }

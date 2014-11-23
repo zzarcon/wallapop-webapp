@@ -19,6 +19,6 @@ export default Ember.View.extend({
   }.property(),
 
   setup: function() {
-    $('.bxslider').bxSlider();
+    Ember.$('.bxslider').bxSlider();
   }.on('didInsertElement')
 });

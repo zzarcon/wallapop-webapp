@@ -1,12 +1,11 @@
 {
-  "predef": {
-    "document": true,
-    "window": true,
-    "WallapopWebappENV": true,
-    "$": true,
-    "L": true,
-    "EmberLeaflet": true
-  },
+  "predef": [
+    "document",
+    "window",
+    "-Promise",
+    "EmberLeaflet",
+    "L"
+  ],
   "browser" : true,
   "boss" : true,
   "curly": true,
@@ -25,9 +24,9 @@
   "onevar": false,
   "plusplus": false,
   "regexp": false,
-  "expr": true,
   "undef": true,
   "sub": true,
+  "expr": true,
   "strict": false,
   "white": false,
   "eqnull": true,
