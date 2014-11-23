@@ -1,4 +1,4 @@
-<div class="collection-cover" style="background-image: url({{unbound images.listImage.xlargeURL}});">
+<div class="collection-cover" style="background-image: url({{images.listImage.xlargeURL}});">
   <div class="collection-title">{{title}}</div>
   <div class="collection-description">{{description}}</div>
   <div class="collection-items">
@@ -12,7 +12,7 @@
   <div class="items">
     {{#each product in featuredItems}}
       {{#link-to "products.show" product.itemId class="item"}}
-        <div class="item-img" style="background-image: url({{unbound product.images.firstObject.smallURL}});"></div>
+        <div class="item-img" style="background-image: url({{product.images.firstObject.smallURL}});"></div>
       {{/link-to}}
     {{/each}}
   </div>
