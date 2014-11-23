@@ -1,5 +1,5 @@
 @import "config";
-@import "vendor/sass-flex-mixin/flex";
+@import "bower_components/sass-flex-mixin/flex";
 
 @import "functions";
 @import "mixins";
@@ -11,4 +11,4 @@
 @import "search-filter";
 @import "loader";
 @import "forms";
-@import "vendor/font-awesome/scss/font-awesome";
+@import "bower_components/font-awesome/scss/font-awesome";

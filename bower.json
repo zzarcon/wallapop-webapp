@@ -14,12 +14,12 @@
     "ember-qunit-notifications": "0.0.4",
     "qunit": "~1.15.0",
     "ember-backdoor": "zzarcon/ember-backdoor#master",
-    "moment": "*",
     "sass-flex-mixin": "mastastealth/sass-flex-mixin#43d947a924cba48fa1f3265f80066815c63bfdca",
     "font-awesome": "*",
     "bxslider-4": "*",
     "leaflet": "*",
     "ember-leaflet": "0.6.0",
-    "leaflet.markercluster": "0.4.0"
+    "leaflet.markercluster": "0.4.0",
+    "ember-cli-moment-shim": "~0.0.2"
   }
 }
