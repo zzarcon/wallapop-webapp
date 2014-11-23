@@ -34,11 +34,16 @@
     }
   }
 
-  .location-search{
-    color: $navyblue;
+  .filter-section.location-search{
     border-bottom: 1px solid #e0e0e2;
-    padding: 1rem;
 
+    header{
+      background-color: white;
+      color: $navyblue;
+    }
+    ul{
+      height: 10rem;
+    }
     .arrow{
       color: #c4c4c4;
       float: right;
