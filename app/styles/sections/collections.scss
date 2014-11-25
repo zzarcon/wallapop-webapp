@@ -7,7 +7,7 @@
     width: 18rem;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: 100%;
     margin: 0.5rem auto;
     text-align: center;
     color: white;
@@ -18,10 +18,11 @@
     overflow: hidden;
     display: inline-block;
     cursor: pointer;
-    transition: box-shadow 0.5s;
+    transition: box-shadow 0.5s, background-size 0.3s;
 
     &:hover{
       box-shadow: 1px 1px 12px 0px black;
+      background-size: 150%;
     }
     .collection-wrapper{
       @include flexbox;
