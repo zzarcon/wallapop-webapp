@@ -102,7 +102,7 @@ li{
     pointer-events: auto;
     opacity: 1;
     .menu-content{
-      left: 0;
+      transform: translateX(0);
     }
   }
 
@@ -113,8 +113,9 @@ li{
         background-color: $navyblue;
       }
     }
-    @include absolute-top-left(0, -$menu-width);
-    transition: left 0.5s;
+    @include absolute-top-left(0, 0);
+    transform: translateX(-$menu-width);
+    transition: transform 0.5s;
     background-color: $gray;
     height: 100%;
     width: $menu-width;
