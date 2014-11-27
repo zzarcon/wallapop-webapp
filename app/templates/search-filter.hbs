@@ -8,8 +8,8 @@
 </div>
 {{#view "filter-section" title=view.categoriesTitle class="categories"}}
   {{#each category in allCategories}}
-    <li {{bind-attr class="category.selected"}} {{action "selectCategory" category}}>
-      <div {{bind-attr class=":custom-checkbox category.selected:checked"}}>
+    <li class="{{if category.selected "selected"}}" {{action "selectCategory" category}}>
+      <div class="custom-checkbox {{if category.selected "checked"}}">
         <i class="fa fa-check"></i>
       </div> {{category.name}}
     </li>
@@ -35,7 +35,7 @@
 {{/view}}
 {{#view "filter-section" title=view.orderTitle class="order"}}
   {{#each order in orders}}
-  <li {{bind-attr class=":clickable order.selected"}} {{action "selectOrder" order}}>
+  <li class="clickable {{if order.selected "selected"}}" {{action "selectOrder" order}}>
     {{order.title}}
   </li>
   {{/each}}
