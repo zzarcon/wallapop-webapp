@@ -1,5 +1,5 @@
 <header class="application-header">
-  <div {{bind-attr class=":toggle-menu view.showMenu:on"}} {{action "toggleMenu" target="view"}}>
+  <div class="toggle-menu {{if view.showMenu "on"}}" {{action "toggleMenu" target="view"}}>
     <div class="one"></div>
     <div class="two"></div>
     <div class="three"></div>

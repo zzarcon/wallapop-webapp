@@ -7,7 +7,7 @@
   <div class="menu-item categories" {{action "toggleCategories" target="view"}}>
     <i class="fa fa-th-list"></i> Categories
   </div>
-  <div {{bind-attr class=":sub-section view.showCategories:visible"}}>
+  <div class="sub-section {{if view.showCategories "visible"}}">
     <ul>
       {{#each category in allCategories}}
         <li class="category" {{action "openCategory" category.id target="view"}}>

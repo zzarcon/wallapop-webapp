@@ -14,7 +14,8 @@ module.exports = function(environment) {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
-        'ember-htmlbars': true
+        'ember-htmlbars': true,
+        'ember-htmlbars-inline-if-helper': true
       }
     },
 

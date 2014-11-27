@@ -15,10 +15,10 @@
   <div class="profile-verification">
     <p>Profile verified</p>
     <div>
-      <i {{bind-attr class=":fa :fa-envelope isEmailVerified:verified"}}></i>
-      <i {{bind-attr class=":fa :fa-phone isCellPhoneVerified:verified"}}></i>
-      <i {{bind-attr class=":fa :fa-facebook isFacebookVerified:verified"}}></i>
-      <i {{bind-attr class=":fa :fa-google isGooglePlusVerified:verified"}}></i>
+      <i class="fa fa-envelope {{if isEmailVerified "verified"}}"></i>
+      <i class="fa fa-phone {{if isCellPhoneVerified "verified"}}"></i>
+      <i class="fa fa-facebook {{if isFacebookVerified "verified"}}"></i>
+      <i class="fa fa-google {{if isGooglePlusVerified "verified"}}"></i>
     </div>
   </div>
   <div class="received-reviews">
