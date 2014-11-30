@@ -6,5 +6,6 @@ export default [
   "orderBy",
   "orderType",
   "latitude",
-  "longitude"
+  "longitude",
+  "distance"
 ];

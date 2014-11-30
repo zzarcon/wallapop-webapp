@@ -16,12 +16,21 @@ export default Ember.Route.extend({
     var categories = queryParams.categories;
     var orderType = queryParams.orderType;
     var orderBy = queryParams.orderBy;
+    var distance = queryParams.distance;
 
     if (categories) {
       this.get('store').all('category').forEach(function(c) {
         if (categories.split(",").contains(c.get('id'))) {
           c.set('selected', true);
         }
+      });
+    }
+
+    if (distance) {
+      this.get('store').all('distance').filter(function(d) {
+        return distance == d.get('distance');
+      }).forEach(function(d) {
+        d.set('selected', true);
       });
     }
 

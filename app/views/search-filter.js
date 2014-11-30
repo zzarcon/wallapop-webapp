@@ -19,17 +19,22 @@ export default Ember.View.extend({
     return 'Categories - ' + (text || '');
   }.property('selectedCategories.@each'),
 
-  pricesTitle: function() {
-    var priceMin = this.get('priceMin') ? ' From ' + this.get('priceMin') : '';
-    var priceMax = this.get('priceMax') ? ' to ' + this.get('priceMax') : '';
+  distanceTitle: function() {
+    return ["Distance", this.get('controller.selectedDistance.title')].join(" - ");
+  }.property('controller.selectedDistance'),
 
-    return "Price -" + priceMin + priceMax;
+  pricesTitle: function() {
+    var priceMin = this.get('priceMin') ? 'From ' + this.get('priceMin') : null;
+    var priceMax = this.get('priceMax') ? ' to ' + this.get('priceMax') : null;
+
+    var prices = [priceMin, priceMax].compact();
+
+    var pricesToShow = prices.length > 0 ? prices.join("") : null;
+
+    return ["Price", pricesToShow].compact().join(" - ");
   }.property('priceMin', 'priceMax'),
 
   orderTitle: function() {
-    var orderBy = this.get('orderBy') ? this.get('orderBy') : '';
-    var orderType = this.get('orderType') ? ' ' + this.get('orderType') : '';
-
-    return 'Order by - ' + orderBy + orderType;
-  }.property('orderBy')
+    return ['Order by', this.get('controller.order.title')].compact().join(" - ");
+  }.property('controller.order')
 });

@@ -14,19 +14,12 @@
     </li>
   {{/each}}
 {{/view}}
-{{#view "filter-section" title="Distance" class="distance"}}
-  <li>
-    Close (1km)
+{{#view "filter-section" title=view.distanceTitle class="distance"}}
+  {{#each distance in distances}}
+  <li class="clickable {{if distance.selected "selected"}}" {{action "selectDistance" distance}}>
+    {{distance.title}}
   </li>
-  <li>
-    My area (5km)
-  </li>
-  <li>
-    My city (10km)
-  </li>
-  <li>
-    Without limit
-  </li>
+  {{/each}}
 {{/view}}
 {{#view "filter-section" clickable=false title=view.pricesTitle class="price"}}
   <li>From {{input type="number" value=priceMin}}</li>

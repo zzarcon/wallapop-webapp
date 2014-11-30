@@ -22,6 +22,10 @@ export default Ember.ObjectController.extend({
     return this.get('store').all('order');
   }.property(),
 
+  distances: function() {
+    return this.get('store').all('distance');
+  }.property(),
+
   categories: Ember.computed.mapBy('_selectedCategories', 'id'),
 
   _categories: function() {
@@ -51,8 +55,16 @@ export default Ember.ObjectController.extend({
     selectOrder: function(order) {
       this.get('store').all('order').setEach('selected', false);
       order.set('selected', true);
+      this.set('order', order);
       this.set('orderBy', order.get('orderBy'));
       this.set('orderType', order.get('orderType'));
+    },
+
+    selectDistance: function(distance) {
+      this.get('store').all('distance').setEach('selected', false);
+      distance.set('selected', true);
+      this.set('selectedDistance', distance);
+      this.set('distance', distance.get('distance'));
     },
 
     filterProducts: function() {
