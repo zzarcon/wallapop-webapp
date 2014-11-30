@@ -4,13 +4,20 @@ html, body {
   font-family: Verdana;
   overflow: hidden;
 }
+
 a{text-decoration: none;}
+
 ul{
   padding: 0;
   margin: 0;
 }
+
 li{
   list-style: none;
+}
+
+.leaflet-container{
+  height: 100%;
 }
 
 #init-loader{

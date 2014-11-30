@@ -1,5 +1,8 @@
 import Ember from "ember";
 
+//TODO Put this in config
+L.Icon.Default.imagePath = 'assets/images';
+
 export default Ember.Route.extend({
   beforeModel: function() {
     return Ember.RSVP.all([this.get('fetcher').bootstrap(), this.get('geolocator.geolocation')]);

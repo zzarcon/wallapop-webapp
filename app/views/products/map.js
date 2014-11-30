@@ -1,8 +1,5 @@
 // import Ember from "ember";
 
-//TODO Put this in config
-L.Icon.Default.imagePath = 'assets/images';
-
 var marker = EmberLeaflet.MarkerCollectionLayer.extend({
   content: function() {
     var lat = this.get('controller.latitude');
