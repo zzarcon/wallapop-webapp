@@ -8,7 +8,8 @@ module.exports = function(environment) {
     locationType: 'auto',
     contentSecurityPolicy: {
       'img-src': "'self' *.cloudfront.net *.tiles.mapbox.com",
-      'connect-src': "'self' https://*.wallapop.com"
+      'connect-src': "'self' https://*.wallapop.com",
+      'style-src': "'self' 'unsafe-inline'"
     },
     EmberENV: {
       FEATURES: {
