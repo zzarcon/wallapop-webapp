@@ -4,6 +4,14 @@ import QueryBuilder from './query_builder';
 export default Ember.Object.extend({
   fetchingProducts: false,
 
+  setRequestHeaders: function() {
+    Ember.$.ajaxSetup({
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader("Accept-Language", "en_US");
+      }
+    });
+  }.on("init"),
+
   bootstrap: function() {
     var bootstrapURL = this.get('queryBuilder').bootstrapURL();
     var store = this.get('store');
