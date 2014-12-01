@@ -2,6 +2,7 @@
   {{input type="search" value=keywords class="search-query" placeholder="What are you looking for?"}}
 </div>
 {{#view "filter-section" title="Where are you searching for it?" class="location-search" visible=false}}
+  {{input type="search" value=location class="search-query" placeholder=""}}
   {{view "location-map"}}
 {{/view}}
 {{!-- <i class="fa fa-location-arrow"></i> --}}

@@ -15,5 +15,19 @@ export default Ember.ObjectController.extend({
   }.property(),
 
   latitude: Ember.computed.alias('geolocation.latitude'),
-  longitude: Ember.computed.alias('geolocation.longitude')
+  longitude: Ember.computed.alias('geolocation.longitude'),
+
+  geocode: function(terms) {
+    return Ember.$.get(this.searchURL(terms));
+  },
+
+  baseURL: function() {
+    return 'http://nominatim.openstreetmap.org/search/';
+  }.property(),
+
+  searchURL: function(terms) {
+    var encodedTerms = encodeURIComponent(terms);
+
+    return this.get('baseURL') + encodedTerms + "?format=json";
+  }
 });
