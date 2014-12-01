@@ -8,11 +8,7 @@
     "ember-resolver": "~0.1.10",
     "loader.js": "stefanpenner/loader.js#1.0.1",
     "ember-cli-shims": "stefanpenner/ember-cli-shims#0.0.3",
-    "ember-cli-test-loader": "rwjblue/ember-cli-test-loader#0.0.4",
     "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.2",
-    "ember-qunit": "0.1.8",
-    "ember-qunit-notifications": "0.0.4",
-    "qunit": "~1.15.0",
     "sass-flex-mixin": "mastastealth/sass-flex-mixin#1.0.0",
     "font-awesome": "*",
     "bxslider-4": "*",
@@ -20,6 +16,12 @@
     "ember-leaflet": "0.6.0",
     "leaflet.markercluster": "0.4.0",
     "ember-cli-moment-shim": "~0.0.2"
+  },
+  "devDependencies": {
+    "ember-qunit": "0.1.8",
+    "ember-qunit-notifications": "0.0.4",
+    "qunit": "~1.15.0",
+    "ember-cli-test-loader": "rwjblue/ember-cli-test-loader#0.0.4"
   },
   "resolutions": {
     "ember": "canary",
