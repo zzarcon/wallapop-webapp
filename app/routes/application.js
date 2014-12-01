@@ -28,7 +28,7 @@ export default Ember.Route.extend({
 
     if (distance) {
       this.get('store').all('distance').filter(function(d) {
-        return distance == d.get('distance');
+        return distance === d.get('distance');
       }).forEach(function(d) {
         d.set('selected', true);
       });

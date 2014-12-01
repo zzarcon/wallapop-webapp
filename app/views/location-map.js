@@ -1,9 +1,6 @@
-import Ember from "ember";
-
 var markerLayer = EmberLeaflet.MarkerLayer.extend(EmberLeaflet.DraggableMixin, EmberLeaflet.PopupMixin, {
   // events: ['click'],
   dragend: function() {
-    debugger;
   }
 });
 

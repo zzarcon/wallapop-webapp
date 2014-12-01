@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import DS from 'ember-data';
 import queryParams from '../../query-params';
 
 var params = {};
