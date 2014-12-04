@@ -3,7 +3,7 @@ import Ember from "ember";
 export default Ember.View.extend({
   elementId: 'application',
   showMenu: false,
-  showFilters: true,
+  showFilters: false,
 
   removeInitLoader: function() {
     Ember.$('#init-loader').remove();
@@ -11,12 +11,10 @@ export default Ember.View.extend({
 
   actions: {
     toggleMenu: function() {
-      // debugger;
       this.toggleProperty('showMenu');
     },
 
     toggleSearchFilters: function() {
-      // debugger;
       this.toggleProperty('showFilters');
     },
 
