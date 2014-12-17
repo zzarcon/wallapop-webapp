@@ -13,7 +13,8 @@
     {{#each product in this}}
       {{#link-to 'products.show' product.id}}
         <div class="item product">
-          <div class="product-image" style="background-image: url({{unbound product.smallImage}})"></div>
+          {{unbound product.smallImage}}
+          <div class="product-image" style="background-image: url({{product.smallImage}})"></div>
           <footer>
             <div class="title">{{product.title}}</div>
             <div class="price">{{product.salePrice}} €</div>
