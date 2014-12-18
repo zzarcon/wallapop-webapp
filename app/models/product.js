@@ -10,7 +10,6 @@ export default DS.Model.extend({
   images: DS.attr(),
   sellerUser: DS.attr(),
 
-  // smallImage: Ember.computed.alias('mainImage.smallURL'),
-  smallImage: 'something',
+  smallImage: Ember.computed.alias('mainImage.smallURL'),
   mediumImage: Ember.computed.alias('mainImage.mediumURL')
 });
