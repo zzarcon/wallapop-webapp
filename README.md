@@ -1,4 +1,4 @@
-# Wallapop-webapp [wallapop-web.herokuapp.com](wallapop-web.herokuapp.com)
+# Wallapop-webapp [wallapop-web.herokuapp.com](http://wallapop-web.herokuapp.com)
 This is the unofficial web version of the [Wallapop app](http://wallapop.com); this project has been developed nonprofit and with the unique goal of create an open source webapp for show what things we can do actually with web technologies.
 
 We decided to "reproduce" these app instead of another one because we love them! and we want to promote the Ember.js stack!!
@@ -23,8 +23,8 @@ We decided to "reproduce" these app instead of another one because we love them!
 
 ## Technologies
 * [Ember.js](http://emberjs.com/)
-* [Ember-cli](http://www.ember-cli.com/)
 * [Ember Data](https://github.com/emberjs/data)
+* [Ember-cli](http://www.ember-cli.com/)
 * [HTMLBars :D](https://github.com/tildeio/htmlbars)
 * [Leaflet](https://github.com/gabesmed/ember-leaflet)
 * [Fontawesome](http://fortawesome.github.io/Font-Awesome/)
