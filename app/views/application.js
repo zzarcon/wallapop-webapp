@@ -9,6 +9,22 @@ export default Ember.View.extend({
     Ember.$('#init-loader').remove();
   }.on('didInsertElement'),
 
+  touchStart: function(){
+    console.log('touchStart');
+  },
+
+  touchMove: function (evt) {
+    console.log('touchMove', evt);
+  },
+
+  touchEnd: function () {
+    console.log('touch end!');
+  },
+
+  touchCancel: function () {
+    console.log('touchCancel');
+  },
+
   actions: {
     toggleMenu: function() {
       this.toggleProperty('showMenu');
