@@ -1,6 +1,29 @@
-# Wallapop-webapp
+# Wallapop webapp
+This is the unofficial web version of the [Wallapop app](http://wallapop.com); this project has been developed nonprofit and with the unique goal of create an open source webapp for show what things we can do actually with web technologies.
 
-This README outlines the details of collaborating on this Ember application.
+We decided to "reproduce" these app instead of another one because we love them!
+
+
+## Showcase
+![](https://raw.github.com/zzarcon/wallapop-webapp/master/showcase/infinite-scroll.gif)
+![](https://raw.github.com/zzarcon/wallapop-webapp/master/showcase/menu.gif)
+![](https://raw.github.com/zzarcon/wallapop-webapp/master/showcase/filters.gif)
+![](https://raw.github.com/zzarcon/wallapop-webapp/master/showcase/active-checkbox.png)
+
+## Features
+- URL bindings
+- Infinite scroll
+- Customizable filters
+- Geolocation based
+- Local cache
+
+## Technologies
+Ember.js
+Ember-cli
+Ember Data
+HTMLBars :D
+Leaflet
+Fontawesome
 
 ## Installation
 
@@ -17,9 +40,3 @@ This README outlines the details of collaborating on this Ember application.
 
 * `ember test`
 * `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://iamstef.net/ember-cli/](http://iamstef.net/ember-cli/).
