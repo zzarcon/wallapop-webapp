@@ -1,14 +1,18 @@
-# Wallapop webapp
+# Wallapop-webapp [wallapop-web.herokuapp.com](wallapop-web.herokuapp.com)
 This is the unofficial web version of the [Wallapop app](http://wallapop.com); this project has been developed nonprofit and with the unique goal of create an open source webapp for show what things we can do actually with web technologies.
 
-We decided to "reproduce" these app instead of another one because we love them!
+We decided to "reproduce" these app instead of another one because we love them! and we want to promote the Ember.js stack!!
 
 
 ## Showcase
+#### Products page
 ![](https://raw.github.com/zzarcon/wallapop-webapp/master/showcase/infinite-scroll.gif)
+#### Menu
 ![](https://raw.github.com/zzarcon/wallapop-webapp/master/showcase/menu.gif)
+#### Filters
 ![](https://raw.github.com/zzarcon/wallapop-webapp/master/showcase/filters.gif)
-![](https://raw.github.com/zzarcon/wallapop-webapp/master/showcase/active-checkbox.png)
+#### Categories
+![](https://raw.github.com/zzarcon/wallapop-webapp/master/showcase/categories.gif)
 
 ## Features
 - URL bindings
@@ -18,12 +22,12 @@ We decided to "reproduce" these app instead of another one because we love them!
 - Local cache
 
 ## Technologies
-Ember.js
-Ember-cli
-Ember Data
-HTMLBars :D
-Leaflet
-Fontawesome
+* [Ember.js](http://emberjs.com/)
+* [Ember-cli](http://www.ember-cli.com/)
+* [Ember Data](https://github.com/emberjs/data)
+* [HTMLBars :D](https://github.com/tildeio/htmlbars)
+* [Leaflet](https://github.com/gabesmed/ember-leaflet)
+* [Fontawesome](http://fortawesome.github.io/Font-Awesome/)
 
 ## Installation
 
@@ -40,3 +44,9 @@ Fontawesome
 
 * `ember test`
 * `ember test --server`
+
+## Authors
+* Hector Zarco - [@zzarcon](https://www.twitter.com/zzarcon)
+* Enric Lluelles - [@enriclluelles](https://www.twitter.com/enriclluelles)
+* Joan Romano - [@joanromano](https://www.twitter.com/joanromano)
+* Miguel Camba - [@MiguelCamba](https://www.twitter.com/MiguelCamba)
