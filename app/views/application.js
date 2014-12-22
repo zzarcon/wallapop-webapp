@@ -73,7 +73,7 @@ export default Ember.View.extend({
       var borderOffset = Math.max(0, menuOffset - this.gesture.initPageX());
       requestAnimationFrame(function(){
         view.ticking = false;
-        var translation = Math.min(- 320 + view.gesture.pageX() + borderOffset, 0);
+        var translation = Math.min(view.gesture.pageX() + borderOffset - view.menuWidth, 0);
         var opacity     = translation / view.menuWidth + 1;
         view.applicationMenu.style.transform  = 'translateX(' + translation + 'px)';
         view.applicationOverlay.style.opacity = opacity;
@@ -87,7 +87,7 @@ export default Ember.View.extend({
     var view  = this;
     function update(){
       x = Math.min(x + 16, view.menuWidth);
-      var translation = Math.min(- view.menuWidth + x, 0);
+      var translation = Math.min(x - view.menuWidth, 0);
       var opacity     = translation / view.menuWidth + 1;
       view.applicationMenu.style.transform  = 'translateX(' + translation + 'px)';
       view.applicationOverlay.style.opacity = opacity;
@@ -106,7 +106,7 @@ export default Ember.View.extend({
     function update(){
       ticks--;
       x = Math.max(x - 16, 0);
-      var translation = Math.min(- view.menuWidth + x, 0);
+      var translation = Math.min(x - view.menuWidth, 0);
       var opacity     = translation / view.menuWidth + 1;
       view.applicationMenu.style.transform  = 'translateX(' + translation + 'px)';
       view.applicationOverlay.style.opacity = opacity;

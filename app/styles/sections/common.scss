@@ -52,6 +52,7 @@ li{
   .toggle-menu {
     width: px-to-rem(28px);
     height: px-to-rem(30px);
+    padding: 0 px-to-rem(2px);
     cursor: pointer;
 
     &.on {
@@ -148,7 +149,7 @@ li{
 }
 
 #application-overlay {
-  background-color: rgba(black, 0.35);
+  background-color: rgba(black, 0.4);
   position: fixed;
   left: 0;
   top: $application-header-height;
