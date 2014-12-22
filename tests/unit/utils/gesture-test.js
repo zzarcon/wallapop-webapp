@@ -40,6 +40,12 @@ test('The `pageX` method returns the pageX of the last event', function() {
   equal(gesture.pageX(), 110);
 });
 
+test('The `initPageX` method returns the pageX of the first event', function() {
+  var gesture = new Gesture(firstEvent);
+  gesture.push(secondEvent);
+  equal(gesture.initPageX(), 100);
+});
+
 test('The `speedX` method returns the speed of the gesture in the X axis', function() {
   var gesture = new Gesture(firstEvent);
   gesture.push(secondEvent);

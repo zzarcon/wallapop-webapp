@@ -29,16 +29,18 @@ export default Ember.View.extend({
   },
 
   touchEnd: function () {
-    var x = this.currentGesture.pageX();
-    var speed = this.currentGesture.speedX();
-    if (speed < -500) {
-      this.collapseMenu();
-    } else if (speed > 500 || x > this.menuWidth / 2) {
-      this.expandMenu();
-    } else if (x < this.menuWidth / 2) {
-      this.collapseMenu();
-    } else {
-      this.expandMenu();
+    if (this.currentGesture.isSwipe() || this.get('menuVisible')) {
+      var x = this.currentGesture.pageX();
+      var speed = this.currentGesture.speedX();
+      if (speed < -500) {
+        this.collapseMenu();
+      } else if (speed > 500 || x > this.menuWidth / 2) {
+        this.expandMenu();
+      } else if (x < this.menuWidth / 2) {
+        this.collapseMenu();
+      } else {
+        this.expandMenu();
+      }
     }
   },
 
@@ -65,9 +67,11 @@ export default Ember.View.extend({
   animateMenu: function(){
     if (!this.ticking) {
       var view = this;
+      var menuOffset = this.get('menuVisible') ? this.menuWidth : 0;
+      var borderOffset = Math.max(0, menuOffset - this.currentGesture.initPageX());
       requestAnimationFrame(function(){
         view.ticking = false;
-        var translation = Math.min(- 320 + view.currentGesture.pageX(), 0);
+        var translation = Math.min(- 320 + view.currentGesture.pageX() + borderOffset, 0);
         view.applicationMenu.style.transform = 'translateX(' + translation + 'px)';
       });
     }

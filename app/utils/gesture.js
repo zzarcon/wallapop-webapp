@@ -29,6 +29,10 @@ Gesture.prototype.pageX = function(){
   return this.last.touches[0].pageX;
 };
 
+Gesture.prototype.initPageX = function(){
+  return this.first.touches[0].pageX;
+};
+
 // It returns the last 5 events (max) in the gesture, which are the ones that
 // give you the information for knowing the current direction/speed.
 Gesture.prototype._meaningfulEvents = function(){
