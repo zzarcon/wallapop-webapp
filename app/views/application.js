@@ -10,43 +10,36 @@ export default Ember.View.extend({
   }.on('didInsertElement'),
 
   measureViewport: function () {
-    this.width = this.$().width();
-    this.applicationMenu = this.$('#application-menu')[0];
-    this.menuContent     = this.$('#application-menu .menu-content')[0];
+    this.viewportWidth   = this.element.offsetWidth;
+    this.applicationMenu = this.element.querySelector('#application-menu');
+    this.menuWidth       = this.applicationMenu.offsetWidth;
   }.on('didInsertElement'),
 
   touchStart: function(evt){
     var x = evt.originalEvent.touches[0].pageX;
-    if (x < 5) {
-      console.log('movement started near the left side of the screen');
-    } else if (this.width - x < 5) {
-      console.log('movement started near the right side of the screen');
-    } else {
-      return;
+    if (x < 20 || (this.currentX && this.currentX > 0)) {
+      this.startX = x;
     }
-    this.startX = x;
   },
 
   touchMove: function (evt) {
-    var x = evt.originalEvent.touches[0].pageX;
-    if (this.startX < 10) {
-      this._displaceLeftMenuTo(x);
-    } else if (this.width - this.startX < 10){
-      this._displaceRightMenuTo(x);
+    if (this.startX){
+      evt.preventDefault();
+      this.currentX = evt.originalEvent.touches[0].pageX;
+      this.requestTick();
     }
   },
 
   touchEnd: function () {
-    if (this.translation < 0 ){
-      this._collapseLeftMenu();
+    if (this.startX) {
+      if (this.currentX > this.menuWidth / 2) {
+        this.completeExpansion(this.currentX);
+      } else {
+        this.abortExpansion(this.currentX);
+        this.currentX = null;
+      }
+      this.startX = null;
     }
-    this.startX = null;
-  },
-
-  touchCancel: function () {
-    console.log('touchCancel');
-    this._collapseLeftMenu();
-    this.startX = null;
   },
 
   actions: {
@@ -65,20 +58,45 @@ export default Ember.View.extend({
   },
 
   // private
-
-  _displaceLeftMenuTo: function (x) {
-    var opacity = x / 320;
-    this.translation = Math.min(- 320 + x, 0);
-
-    this.applicationMenu.style.opacity = opacity;
-    this.menuContent.style.transform = 'translateX(' + this.translation + 'px)';
+  requestTick: function(){
+    if (!this.ticking) {
+      var view = this;
+      requestAnimationFrame(function(){
+        view.ticking = false;
+        var translation = Math.min(- 320 + view.currentX, 0);
+        view.applicationMenu.style.transform = 'translateX(' + translation + 'px)';
+      });
+    }
+    this.ticking = true;
   },
 
-  _displaceRightMenuTo: function (x) {
-    console.log('displace right menu to: ', x);
+  completeExpansion: function(currentX){
+    var ticks = (this.menuWidth - currentX) / 16; // speed is 16px/frame
+    var view  = this;
+    function update(){
+      currentX = Math.min(currentX + 16, view.menuWidth)
+      var translation = Math.min(- 320 + currentX, 0);
+      view.applicationMenu.style.transform = 'translateX(' + translation + 'px)';
+      ticks--;
+      if (ticks > 0){
+        requestAnimationFrame(update);
+      }
+    }
+    requestAnimationFrame(update);
   },
 
-  _collapseLeftMenu: function(){
-    this._displaceLeftMenuTo(0); // TODO: Animate collapse
+  abortExpansion: function(currentX){
+    var ticks = currentX / 16; // speed is 16px/frame
+    var view  = this;
+    function update(){
+      ticks--;
+      currentX = Math.max(currentX - 16, 0)
+      var translation = Math.min(- 320 + currentX, 0);
+      view.applicationMenu.style.transform = 'translateX(' + translation + 'px)';
+      if (ticks > 0){
+        requestAnimationFrame(update);
+      }
+    }
+    requestAnimationFrame(update);
   }
 });

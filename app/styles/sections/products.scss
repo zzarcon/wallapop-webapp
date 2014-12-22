@@ -44,11 +44,7 @@
     margin: 0.5rem;
     background-color: white;
     cursor: pointer;
-    transition: box-shadow 0.5s;
 
-    &:hover{
-      box-shadow: 1px 1px 12px 0px black;
-    }
     .product-image{
       background: no-repeat center;
       width: 100%;

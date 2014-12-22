@@ -94,65 +94,48 @@ li{
 }
 
 //MENU
-.application-menu{
+#application-menu{
   $menu-width: 20rem;
-  @include square;
-  // transition: opacity 0.3s;
-  opacity: 0;
-  z-index: 90000;
-  pointer-events: none;
   position: fixed;
   left: 0;
   top: $application-header-height;
+  transform: translateX(-$menu-width);
+  transition: transform 0.06s;
+  will-change: transform;
+  background-color: $gray;
+  color: white;
+  width: $menu-width;
+  height: 100%;
+  z-index: 100;
+  @mixin item-background(){
+    transition: background-color 0.3s;
+    &:hover { background-color: $navyblue; }
+  }
 
-  .menu-content{
-    @mixin item-background(){
-      transition: background-color 0.3s;
-      &:hover{
-        background-color: $navyblue;
-      }
+  .menu-item{
+    @include item-background;
+    cursor: pointer;
+    padding: 1rem;
+    height: 1.2rem;
+    i { margin-right: 0.3rem; }
+  }
+  .sub-section{
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s;
+
+    &.visible{
+      height: 100%;
     }
-    @include absolute-top-left(0, 0);
-    transform: translateX(-$menu-width);
-    // transition: transform 0.5s;
-    background-color: $gray;
-    height: 100%;
-    width: $menu-width;
-    color: white;
-
-    .menu-item{
+    li {
       @include item-background;
       cursor: pointer;
-      padding: 1rem;
-      height: 1.2rem;
-
-      i{
-        margin-right: 0.3rem;
-     }
-    }
-    .sub-section{
-      height: 0;
-      overflow: hidden;
-      transition: height 0.5s;
-
-      &.visible{
-        height: 100%;
-      }
-      li{
-        @include item-background;
-        cursor: pointer;
-        padding: 0.2rem 2rem;
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
+      padding: 0.2rem 2rem;
+      a {
+        color: inherit;
+        text-decoration: none;
       }
     }
-
-  }
-  .overlay{
-    @include square;
-    background-color: rgba(black, 0.3);
   }
 }
 
