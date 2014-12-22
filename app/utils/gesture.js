@@ -19,10 +19,7 @@ Gesture.prototype.push = function(evt) {
 };
 
 Gesture.prototype.isSwipe = function(){
-  if (this.first.touches[0].pageX < 20) {
-    return true;
-  }
-  return false;
+  return this.length > 1;
 };
 
 Gesture.prototype.pageX = function(){

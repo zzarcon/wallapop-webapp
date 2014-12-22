@@ -52,3 +52,10 @@ test('The `speedX` method returns the speed of the gesture in the X axis', funct
   gesture.push(thirdEvent);
   equal(gesture.speedX(), 1000);
 });
+
+test('The `isSwipe` method returns true if the gesture contained movement', function() {
+  var gesture = new Gesture(firstEvent);
+  ok(!gesture.isSwipe(), 'The gesture is not a movement, it only contains one touch event');
+  gesture.push(secondEvent);
+  ok(gesture.isSwipe(), 'The gesture IS a movement, it contains many touch events');
+});

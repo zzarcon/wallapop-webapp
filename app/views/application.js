@@ -22,25 +22,26 @@ export default Ember.View.extend({
 
   touchMove: function (evt) {
     this.currentGesture.push(evt.originalEvent);
-    if (this.currentGesture.isSwipe() || this.get('menuVisible')) {
+    if (this.currentGesture.initPageX() < 20 || this.get('menuVisible')) {
       evt.originalEvent.preventDefault();
       this.animateMenu();
     }
   },
 
   touchEnd: function () {
-    if (this.currentGesture.isSwipe() || this.get('menuVisible')) {
-      var x = this.currentGesture.pageX();
-      var speed = this.currentGesture.speedX();
-      if (speed < -500) {
-        this.collapseMenu();
-      } else if (speed > 500 || x > this.menuWidth / 2) {
-        this.expandMenu();
-      } else if (x < this.menuWidth / 2) {
-        this.collapseMenu();
-      } else {
-        this.expandMenu();
-      }
+    if (!this.currentGesture.isSwipe() || this.currentGesture.initPageX() >= 20 && !this.get('menuVisible')) {
+      return;
+    }
+    var x = this.currentGesture.pageX();
+    var speed = this.currentGesture.speedX();
+    if (speed < -500) {
+      this.collapseMenu();
+    } else if (speed > 500 || x > this.menuWidth / 2) {
+      this.expandMenu();
+    } else if (x < this.menuWidth / 2) {
+      this.collapseMenu();
+    } else {
+      this.expandMenu();
     }
   },
 
