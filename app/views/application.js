@@ -43,7 +43,7 @@ Gesture.prototype.speedX = function(){
 
 export default Ember.View.extend({
   elementId: 'application',
-  showMenu: false,
+  menuVisible: false,
   showFilters: false,
 
   removeInitLoader: function() {
@@ -62,7 +62,7 @@ export default Ember.View.extend({
 
   touchMove: function (evt) {
     this.currentGesture.push(evt.originalEvent);
-    if (this.currentGesture.isSwipe() || this.menuVisible) {
+    if (this.currentGesture.isSwipe() || this.get('menuVisible')) {
       evt.originalEvent.preventDefault();
       this.animateMenu();
     }
@@ -72,19 +72,23 @@ export default Ember.View.extend({
     var x = this.currentGesture.pageX();
     var speed = this.currentGesture.speedX();
     if (speed < -500) {
-      this.abortExpansion();
+      this.collapseMenu();
     } else if (speed > 500 || x > this.menuWidth / 2) {
-      this.completeExpansion();
+      this.expandMenu();
     } else if (x < this.menuWidth / 2) {
-      this.abortExpansion();
+      this.collapseMenu();
     } else {
-      this.completeExpansion();
+      this.expandMenu();
     }
   },
 
   actions: {
     toggleMenu: function() {
-      this.completeExpansion(0);
+      if (this.get('menuVisible')) {
+        this.collapseMenu(this.menuWidth);
+      } else {
+        this.expandMenu(0);
+      }
     },
 
     toggleSearchFilters: function() {
@@ -110,8 +114,7 @@ export default Ember.View.extend({
     this.ticking = true;
   },
 
-  completeExpansion: function() {
-    var x     = this.currentGesture.pageX();
+  expandMenu: function(x = this.currentGesture.pageX()) {
     var ticks = (this.menuWidth - x) / 16; // speed is 16px/frame
     var view  = this;
     function update(){
@@ -124,11 +127,10 @@ export default Ember.View.extend({
       }
     }
     requestAnimationFrame(update);
-    this.menuVisible = true;
+    this.set('menuVisible', true);
   },
 
-  abortExpansion: function(){
-    var x     = this.currentGesture.pageX();
+  collapseMenu: function(x = this.currentGesture.pageX()){
     var ticks = x / 16; // speed is 16px/frame
     var view  = this;
     function update(){
@@ -141,6 +143,6 @@ export default Ember.View.extend({
       }
     }
     requestAnimationFrame(update);
-    this.menuVisible = false;
+    this.set('menuVisible', false);
   }
 });
