@@ -17,23 +17,23 @@ export default Ember.View.extend({
   }.on('didInsertElement'),
 
   touchStart: function(evt){
-    this.currentGesture = new Gesture(evt.originalEvent);
+    this.gesture = new Gesture(evt.originalEvent);
   },
 
   touchMove: function (evt) {
-    this.currentGesture.push(evt.originalEvent);
-    if (this.currentGesture.initPageX() < 20 || this.get('menuVisible')) {
+    this.gesture.push(evt.originalEvent);
+    if (this.gesture.initPageX() < 20 || this.get('menuVisible')) {
       evt.originalEvent.preventDefault();
       this.animateMenu();
     }
   },
 
   touchEnd: function () {
-    if (!this.currentGesture.isSwipe() || this.currentGesture.initPageX() >= 20 && !this.get('menuVisible')) {
+    if (!this.gesture.isSwipe() || this.gesture.initPageX() >= 20 && !this.get('menuVisible')) {
       return;
     }
-    var x = this.currentGesture.pageX();
-    var speed = this.currentGesture.speedX();
+    var x = this.gesture.pageX();
+    var speed = this.gesture.speedX();
     if (speed < -500) {
       this.collapseMenu();
     } else if (speed > 500 || x > this.menuWidth / 2) {
@@ -69,17 +69,17 @@ export default Ember.View.extend({
     if (!this.ticking) {
       var view = this;
       var menuOffset = this.get('menuVisible') ? this.menuWidth : 0;
-      var borderOffset = Math.max(0, menuOffset - this.currentGesture.initPageX());
+      var borderOffset = Math.max(0, menuOffset - this.gesture.initPageX());
       requestAnimationFrame(function(){
         view.ticking = false;
-        var translation = Math.min(- 320 + view.currentGesture.pageX() + borderOffset, 0);
+        var translation = Math.min(- 320 + view.gesture.pageX() + borderOffset, 0);
         view.applicationMenu.style.transform = 'translateX(' + translation + 'px)';
       });
     }
     this.ticking = true;
   },
 
-  expandMenu: function(x = this.currentGesture.pageX()) {
+  expandMenu: function(x = this.gesture.pageX()) {
     var ticks = (this.menuWidth - x) / 16; // speed is 16px/frame
     var view  = this;
     function update(){
@@ -95,7 +95,7 @@ export default Ember.View.extend({
     this.set('menuVisible', true);
   },
 
-  collapseMenu: function(x = this.currentGesture.pageX()){
+  collapseMenu: function(x = this.gesture.pageX()){
     var ticks = x / 16; // speed is 16px/frame
     var view  = this;
     function update(){
