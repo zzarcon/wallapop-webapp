@@ -5,7 +5,7 @@ html, body {
   overflow: hidden;
 }
 
-a{text-decoration: none;}
+a { text-decoration: none; }
 
 ul{
   padding: 0;
@@ -145,4 +145,16 @@ li{
   width: 100%;
   position: relative;
   margin-top: $application-header-height;
+}
+
+#application-overlay {
+  background-color: rgba(black, 0.35);
+  position: fixed;
+  left: 0;
+  top: $application-header-height;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  opacity: 0;
+  will-change: opacity;
 }

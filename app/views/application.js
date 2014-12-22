@@ -11,9 +11,10 @@ export default Ember.View.extend({
   }.on('didInsertElement'),
 
   measureViewport: function () {
-    this.viewportWidth   = this.element.offsetWidth;
-    this.applicationMenu = this.element.querySelector('#application-menu');
-    this.menuWidth       = this.applicationMenu.offsetWidth;
+    this.viewportWidth      = this.element.offsetWidth;
+    this.applicationMenu    = this.element.querySelector('#application-menu');
+    this.applicationOverlay = this.element.querySelector('#application-overlay');
+    this.menuWidth          = this.applicationMenu.offsetWidth;
   }.on('didInsertElement'),
 
   touchStart: function(evt){
@@ -73,7 +74,9 @@ export default Ember.View.extend({
       requestAnimationFrame(function(){
         view.ticking = false;
         var translation = Math.min(- 320 + view.gesture.pageX() + borderOffset, 0);
-        view.applicationMenu.style.transform = 'translateX(' + translation + 'px)';
+        var opacity     = translation / view.menuWidth + 1;
+        view.applicationMenu.style.transform  = 'translateX(' + translation + 'px)';
+        view.applicationOverlay.style.opacity = opacity;
       });
     }
     this.ticking = true;
@@ -84,8 +87,10 @@ export default Ember.View.extend({
     var view  = this;
     function update(){
       x = Math.min(x + 16, view.menuWidth);
-      var translation = Math.min(- 320 + x, 0);
-      view.applicationMenu.style.transform = 'translateX(' + translation + 'px)';
+      var translation = Math.min(- view.menuWidth + x, 0);
+      var opacity     = translation / view.menuWidth + 1;
+      view.applicationMenu.style.transform  = 'translateX(' + translation + 'px)';
+      view.applicationOverlay.style.opacity = opacity;
       ticks--;
       if (ticks > 0){
         requestAnimationFrame(update);
@@ -101,8 +106,10 @@ export default Ember.View.extend({
     function update(){
       ticks--;
       x = Math.max(x - 16, 0);
-      var translation = Math.min(- 320 + x, 0);
-      view.applicationMenu.style.transform = 'translateX(' + translation + 'px)';
+      var translation = Math.min(- view.menuWidth + x, 0);
+      var opacity     = translation / view.menuWidth + 1;
+      view.applicationMenu.style.transform  = 'translateX(' + translation + 'px)';
+      view.applicationOverlay.style.opacity = opacity;
       if (ticks > 0){
         requestAnimationFrame(update);
       }
