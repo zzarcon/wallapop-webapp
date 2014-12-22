@@ -5,7 +5,6 @@
   {{input type="search" value=location class="search-query" placeholder=""}}
   {{view "location-map"}}
 {{/view}}
-{{!-- <i class="fa fa-location-arrow"></i> --}}
 {{#view "filter-section" title=view.categoriesTitle class="categories"}}
   {{#each category in allCategories}}
     <li class="{{if category.selected "selected"}}" {{action "selectCategory" category}}>
