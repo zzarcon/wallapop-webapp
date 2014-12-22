@@ -1,5 +1,46 @@
 import Ember from "ember";
 
+function Gesture(event) {
+  this.events = [event];
+  this.first  = event;
+  this.length = 1;
+  return this;
+}
+
+Gesture.prototype.push = function(evt) {
+  this.events.push(evt);
+  this.last = evt;
+  this.length++;
+};
+
+Gesture.prototype.isSwipe = function(){
+  if (this.first.touches[0].pageX < 20) {
+    return true;
+  }
+  return false;
+};
+
+Gesture.prototype.pageX = function(){
+  return this.last.touches[0].pageX;
+};
+
+// It returns the last 5 events (max) in the gesture, which are the ones that
+// give you the information for knowing the current direction/speed.
+Gesture.prototype._meaningfulEvents = function(){
+  return this.events.slice(Math.max(this.length - 5, 0), this.length);
+};
+
+// In pixels/second. Negative values means movement to the left. Positive to the right.
+Gesture.prototype.speedX = function(){
+  var lastEvents = this._meaningfulEvents();
+  var initX    = lastEvents[0].touches[0].pageX;
+  var initTime = lastEvents[0].timeStamp;
+  var lastX    = lastEvents[lastEvents.length - 1].touches[0].pageX;
+  var lastTime = lastEvents[lastEvents.length - 1].timeStamp;
+
+  return (lastX - initX) / (lastTime - initTime) * 1000;
+};
+
 export default Ember.View.extend({
   elementId: 'application',
   showMenu: false,
@@ -16,35 +57,34 @@ export default Ember.View.extend({
   }.on('didInsertElement'),
 
   touchStart: function(evt){
-    var x = evt.originalEvent.touches[0].pageX;
-    if (x < 20 || (this.currentX && this.currentX > 0)) {
-      this.startX = x;
-    }
+    this.currentGesture = new Gesture(evt.originalEvent);
   },
 
   touchMove: function (evt) {
-    if (this.startX){
-      evt.preventDefault();
-      this.currentX = evt.originalEvent.touches[0].pageX;
-      this.requestTick();
+    this.currentGesture.push(evt.originalEvent);
+    if (this.currentGesture.isSwipe() || this.menuVisible) {
+      evt.originalEvent.preventDefault();
+      this.animateMenu();
     }
   },
 
   touchEnd: function () {
-    if (this.startX) {
-      if (this.currentX > this.menuWidth / 2) {
-        this.completeExpansion(this.currentX);
-      } else {
-        this.abortExpansion(this.currentX);
-        this.currentX = null;
-      }
-      this.startX = null;
+    var x = this.currentGesture.pageX();
+    var speed = this.currentGesture.speedX();
+    if (speed < -500) {
+      this.abortExpansion();
+    } else if (speed > 500 || x > this.menuWidth / 2) {
+      this.completeExpansion();
+    } else if (x < this.menuWidth / 2) {
+      this.abortExpansion();
+    } else {
+      this.completeExpansion();
     }
   },
 
   actions: {
     toggleMenu: function() {
-      this.toggleProperty('showMenu');
+      this.completeExpansion(0);
     },
 
     toggleSearchFilters: function() {
@@ -57,25 +97,26 @@ export default Ember.View.extend({
     }
   },
 
-  // private
-  requestTick: function(){
+  // Private
+  animateMenu: function(){
     if (!this.ticking) {
       var view = this;
       requestAnimationFrame(function(){
         view.ticking = false;
-        var translation = Math.min(- 320 + view.currentX, 0);
+        var translation = Math.min(- 320 + view.currentGesture.pageX(), 0);
         view.applicationMenu.style.transform = 'translateX(' + translation + 'px)';
       });
     }
     this.ticking = true;
   },
 
-  completeExpansion: function(currentX){
-    var ticks = (this.menuWidth - currentX) / 16; // speed is 16px/frame
+  completeExpansion: function() {
+    var x     = this.currentGesture.pageX();
+    var ticks = (this.menuWidth - x) / 16; // speed is 16px/frame
     var view  = this;
     function update(){
-      currentX = Math.min(currentX + 16, view.menuWidth)
-      var translation = Math.min(- 320 + currentX, 0);
+      x = Math.min(x + 16, view.menuWidth);
+      var translation = Math.min(- 320 + x, 0);
       view.applicationMenu.style.transform = 'translateX(' + translation + 'px)';
       ticks--;
       if (ticks > 0){
@@ -83,20 +124,23 @@ export default Ember.View.extend({
       }
     }
     requestAnimationFrame(update);
+    this.menuVisible = true;
   },
 
-  abortExpansion: function(currentX){
-    var ticks = currentX / 16; // speed is 16px/frame
+  abortExpansion: function(){
+    var x     = this.currentGesture.pageX();
+    var ticks = x / 16; // speed is 16px/frame
     var view  = this;
     function update(){
       ticks--;
-      currentX = Math.max(currentX - 16, 0)
-      var translation = Math.min(- 320 + currentX, 0);
+      x = Math.max(x - 16, 0);
+      var translation = Math.min(- 320 + x, 0);
       view.applicationMenu.style.transform = 'translateX(' + translation + 'px)';
       if (ticks > 0){
         requestAnimationFrame(update);
       }
     }
     requestAnimationFrame(update);
+    this.menuVisible = false;
   }
 });
