@@ -1,5 +1,3 @@
-// import Ember from "ember";
-
 var marker = EmberLeaflet.MarkerCollectionLayer.extend({
   content: function() {
     var lat = this.get('controller.latitude');
