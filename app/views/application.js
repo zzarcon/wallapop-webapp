@@ -17,6 +17,14 @@ export default Ember.View.extend({
     this.menuWidth          = this.applicationMenu.offsetWidth;
   }.on('didInsertElement'),
 
+  // TODO: Remove this when Ember.Evented is removed from the controller
+  registerControllerListeners: function(){
+    var view = this;
+    this.get('controller').on('hideMenu', function(){
+      view.collapseMenu(view.menuWidth);
+    });
+  }.on('didInsertElement'),
+
   touchStart: function(evt){
     this.gesture = new Gesture(evt.originalEvent);
   },
