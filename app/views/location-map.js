@@ -34,7 +34,7 @@ export default EmberLeaflet.MapView.extend({
       this.get('controller.geolocator.latitude'),
       this.get('controller.geolocator.longitude')
     );
-    this.set('center', Center);
+    this.set('center', center);
   }.observes('controller.geolocator.latitude', 'controller.geolocator.longitude'),
 
   events: ['click'],
