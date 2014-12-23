@@ -85,6 +85,7 @@ export default Ember.View.extend({
         var opacity     = translation / view.menuWidth + 1;
         view.applicationMenu.style.transform  = 'translateX(' + translation + 'px)';
         view.applicationOverlay.style.opacity = opacity;
+        view.applicationOverlay.style['z-index'] = 99;
       });
     }
     this.ticking = true;
@@ -93,6 +94,7 @@ export default Ember.View.extend({
   expandMenu: function(x = this.gesture.pageX()) {
     var ticks = (this.menuWidth - x) / 16; // speed is 16px/frame
     var view  = this;
+    view.applicationOverlay.style['z-index'] = 99;
     function update(){
       x = Math.min(x + 16, view.menuWidth);
       var translation = Math.min(x - view.menuWidth, 0);
@@ -120,6 +122,8 @@ export default Ember.View.extend({
       view.applicationOverlay.style.opacity = opacity;
       if (ticks > 0){
         requestAnimationFrame(update);
+      } else {
+        view.applicationOverlay.style['z-index'] = -1;
       }
     }
     requestAnimationFrame(update);
