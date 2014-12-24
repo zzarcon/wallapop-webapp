@@ -20,9 +20,11 @@
     cursor: pointer;
     transition: box-shadow 0.5s, background-size 0.3s;
 
-    &:hover{
-      box-shadow: 1px 1px 12px 0px black;
-      background-size: 150%;
+    @media (min-width: 1281px)  {
+      &:hover{
+        box-shadow: 1px 1px 12px 0px black;
+        background-size: 150%;
+      }
     }
     .collection-wrapper{
       @include flexbox;
