@@ -1,6 +1,6 @@
 {{partial "application-header"}}
 <div class="application-content">
-  <slider-menu id="application-menu" position="left" progress={{applicationMenuExpandedRatio}}>
+  <slider-menu id="application-menu" position="left" progress={{applicationMenuExpandedRatio}} defaultSpeed={{menuExpansionSpeed}}>
     <div class="menu-item collections">
       <div {{action "openCollections"}}>
         <i class="fa fa-heart"></i> Collections

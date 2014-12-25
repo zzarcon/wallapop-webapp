@@ -4,7 +4,7 @@ import Gesture from "wallapop-webapp/utils/gesture";
 export default Ember.Component.extend({
   position: 'left',
   progress: 0,
-  minSpeed: 0.04,
+  defaultSpeed: null, // Needs to be passed in
 
   // Initializers
   setTouchEventListeners: function() {
@@ -16,13 +16,17 @@ export default Ember.Component.extend({
     function handleTouchMove(evt){
       evt.preventDefault();
       self.gesture.push(evt);
-      Ember.run.scheduleOnce('actions', self, self.updateProgress);
+      if (self.tick){
+        return;
+      }
+      self.tick = true;
+      requestAnimationFrame(self.updateProgress.bind(self));
     }
 
     function handleTouchEnd(){
       applicationNode.removeEventListener('touchmove', handleTouchMove, true);
       applicationNode.removeEventListener('touchend', handleTouchEnd, true);
-      Ember.run.scheduleOnce('actions', self, self.completeExpansion);
+      requestAnimationFrame(self.completeExpansion.bind(self));
     }
 
     function handleTouchStart(evt){
@@ -56,6 +60,7 @@ export default Ember.Component.extend({
     var borderOffset = Math.max(0, this.menuOffset - this.gesture.initPageX());
     var progress = Math.min((this.gesture.pageX() + borderOffset) / this.width, 1);
     this.set('progress', progress);
+    this.tick = false;
   },
 
   completeExpansion: function(){
@@ -67,14 +72,14 @@ export default Ember.Component.extend({
     var newProgress;
 
     if (gestureSpeed < -500 || gestureSpeed <= 500 && progress < 0.5) {
-      newProgress = Math.max(progress - this.minSpeed, 0);
+      newProgress = Math.max(progress - this.defaultSpeed, 0);
       this.set('progress', newProgress);
     } else {
-      newProgress = Math.min(progress + this.minSpeed, 1);
+      newProgress = Math.min(progress + this.defaultSpeed, 1);
       this.set('progress', newProgress);
     }
     if (newProgress > 0 && newProgress < 1) {
-      Ember.run.next(this, this.completeExpansion);
+      requestAnimationFrame(this.completeExpansion.bind(this))
     }
   },
 

@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  defaultSpeed: 0.06,
   classNames: ['toggle-menu'],
 
   topBarStyle: function() {
@@ -25,16 +26,16 @@ export default Ember.Component.extend({
 
   click: function(){
     var progress = this.get('progress');
-    var delta = progress === 0 ? 0.05 : -0.05;
-    this.animateProgress(delta);
+    this.delta = progress === 0 ? this.defaultSpeed : -this.defaultSpeed;
+    requestAnimationFrame(this.animateProgress.bind(this));
   },
 
-  animateProgress: function(delta) {
+  animateProgress: function() {
     var progress = this.get('progress');
-    progress = Math.min(Math.max(progress + delta, 0), 1)
+    progress = Math.min(Math.max(progress + this.delta, 0), 1)
     this.set('progress', progress);
     if (progress !== 0 && progress !== 1) {
-      Ember.run.next(this, 'animateProgress', delta);
+      requestAnimationFrame(this.animateProgress.bind(this));
     }
   }
 });

@@ -4,6 +4,7 @@ import queryParams from '../query-params';
 
 export default Ember.ObjectController.extend({
   applicationMenuExpandedRatio: 0,
+  menuExpansionSpeed: 0.053333,
 
   setupFilters: function() {
     this.set('content', {});
@@ -101,12 +102,12 @@ export default Ember.ObjectController.extend({
   hideMenu: function(){
     this.set('showCategories', false);
     function reduceMenuExpansion(){
-      var newExpansion = Math.max(this.get('applicationMenuExpandedRatio') - 0.05, 0);
+      var newExpansion = Math.max(this.get('applicationMenuExpandedRatio') - this.menuExpansionSpeed, 0);
       this.set('applicationMenuExpandedRatio', newExpansion);
       if (newExpansion > 0) {
-        Ember.run.next(this, reduceMenuExpansion);
+        requestAnimationFrame(reduceMenuExpansion.bind(this));
       }
     }
-    Ember.run.next(this, reduceMenuExpansion);
+    requestAnimationFrame(reduceMenuExpansion.bind(this));
   }
 });
