@@ -86,5 +86,6 @@ export default Ember.Component.extend({
   progressObserver: function(){
     var translate = (this.get('progress') - 1) * this.width;
     this.element.style.transform  = 'translateX(' + translate + 'px)';
+    this.element.style['-webkit-transform'] = 'translateX(' + translate + 'px)';
   }.observes('progress')
 });
