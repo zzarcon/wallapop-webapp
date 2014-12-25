@@ -79,7 +79,7 @@ export default Ember.Component.extend({
       this.set('progress', newProgress);
     }
     if (newProgress > 0 && newProgress < 1) {
-      requestAnimationFrame(this.completeExpansion.bind(this))
+      requestAnimationFrame(this.completeExpansion.bind(this));
     }
   },
 

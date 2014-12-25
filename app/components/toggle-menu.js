@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   topBarStyle: function() {
     var progress = this.get('progress');
     var rotation = progress * 45;
-    var translateX = progress * 5
+    var translateX = progress * 5;
     var translateY = translateX;
     return 'transform: rotate(' + rotation + 'deg) translate(' + translateX + 'px, ' + translateY + 'px);' +
       '-webkit-transform: rotate(' + rotation + 'deg) translate(' + translateX + 'px, ' + translateY + 'px)';
@@ -33,8 +33,7 @@ export default Ember.Component.extend({
   },
 
   animateProgress: function() {
-    var progress = this.get('progress');
-    progress = Math.min(Math.max(progress + this.delta, 0), 1)
+    var progress = Math.min(Math.max(this.get('progress') + this.delta, 0), 1);
     this.set('progress', progress);
     if (progress !== 0 && progress !== 1) {
       requestAnimationFrame(this.animateProgress.bind(this));
