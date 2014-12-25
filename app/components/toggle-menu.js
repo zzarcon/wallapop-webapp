@@ -10,7 +10,7 @@ export default Ember.Component.extend({
     var translateX = progress * 5
     var translateY = translateX;
     return 'transform: rotate(' + rotation + 'deg) translate(' + translateX + 'px, ' + translateY + 'px);' +
-      '-webkit-transform: rotate(' + rotation + 'deg) translate(' + translateX + 'px, ' + translateY + 'px)';;
+      '-webkit-transform: rotate(' + rotation + 'deg) translate(' + translateX + 'px, ' + translateY + 'px)';
   }.property('progress'),
 
   middleBarStyle: function() {
@@ -22,7 +22,7 @@ export default Ember.Component.extend({
     var rotation = progress * -45;
     var translateX = progress * 7;
     var translateY = progress * -8;
-    return 'transform: rotate(' + rotation + 'deg) translate(' + translateX + 'px, ' + translateY + 'px);',
+    return 'transform: rotate(' + rotation + 'deg) translate(' + translateX + 'px, ' + translateY + 'px);' +
       '-webkit-transform: rotate(' + rotation + 'deg) translate(' + translateX + 'px, ' + translateY + 'px);';
   }.property('progress'),
 

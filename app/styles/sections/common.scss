@@ -95,7 +95,6 @@ li{
   top: $application-header-height;
   transform: translateX(-$menu-width);
   -webkit-transform: translateX(-$menu-width);
-  transition: transform 0.06s;
   will-change: transform;
   background-color: $gray;
   color: white;
