@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Gesture from "wallapop-webapp/utils/gesture";
 
 export default Ember.Component.extend({
+  attributeBindings: ['style'],
   position: 'left',
   progress: 0,
   defaultSpeed: null, // Needs to be passed in
@@ -9,7 +10,6 @@ export default Ember.Component.extend({
   // Initializers
   setTouchEventListeners: function() {
     this.width = this.element.offsetWidth;
-    this.progressObserver();
     var applicationNode = document.querySelector('#application');
     var self = this;
 
@@ -51,6 +51,11 @@ export default Ember.Component.extend({
     return this.get('progress') <= 0;
   }.property('progress'),
 
+  style: function(){
+    var translate = (this.get('progress') - 1) * this.width;
+    return 'transform: translateX(' + translate + 'px); -webkit-transform: translateX(' + translate + 'px)';
+  }.property('progress'),
+
   // Private methods
   mustFollow: function(gesture){
     return this.get('expanded') || this.position === 'left' && gesture.initPageX() < 20;
@@ -81,11 +86,5 @@ export default Ember.Component.extend({
     if (newProgress > 0 && newProgress < 1) {
       requestAnimationFrame(this.completeExpansion.bind(this));
     }
-  },
-
-  progressObserver: function(){
-    var translate = (this.get('progress') - 1) * this.width;
-    this.element.style.transform  = 'translateX(' + translate + 'px)';
-    this.element.style['-webkit-transform'] = 'translateX(' + translate + 'px)';
-  }.observes('progress')
+  }
 });

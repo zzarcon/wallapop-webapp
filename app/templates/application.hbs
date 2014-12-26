@@ -18,6 +18,6 @@
     </div>
   </slider-menu>
   {{view "search-filter" visibleWhen=view.showFilters}}
-  <content-overlay id="application-overlay" visibility={{applicationMenuExpandedRatio}}></content-overlay>
+  <content-overlay id="application-overlay" opacity={{applicationMenuExpandedRatio}}></content-overlay>
   {{outlet}}
 </div>
