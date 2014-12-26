@@ -26,7 +26,7 @@ export default Ember.Component.extend({
     function handleTouchEnd(){
       applicationNode.removeEventListener('touchmove', handleTouchMove, true);
       applicationNode.removeEventListener('touchend', handleTouchEnd, true);
-      requestAnimationFrame(self.completeExpansion.bind(self));
+      self.completeExpansion();
     }
 
     function handleTouchStart(evt){
