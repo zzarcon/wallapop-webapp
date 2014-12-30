@@ -1,7 +1,6 @@
 {
   "name": "wallapop-webapp",
   "dependencies": {
-    "handlebars": "~2.0.0",
     "jquery": "^2.1.1",
     "ember": "components/ember#canary",
     "ember-data": "components/ember-data#canary",
@@ -26,7 +25,6 @@
   "resolutions": {
     "ember": "canary",
     "ember-data": "canary",
-    "handlebars": "~2.0.0",
     "jquery": "2.1.1"
   }
 }
