@@ -2,7 +2,9 @@ import Ember from "ember";
 import AppStatus from "../app-status";
 import queryParams from '../query-params';
 
-export default Ember.ObjectController.extend({
+export default Ember.ObjectController.extend(
+  Ember.Evented, // TODO: Remove Ember.Evented mixin. Is just a temporal hack before migrate to components
+  {
   setupFilters: function() {
     this.set('content', {});
     queryParams.forEach(function(filterName) {
@@ -80,6 +82,10 @@ export default Ember.ObjectController.extend({
       this.transitionToRoute("products", {
         queryParams: params
       });
+    },
+
+    hideMenu: function() {
+      this.trigger('hideMenu');
     }
   }
 

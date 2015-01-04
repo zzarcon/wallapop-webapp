@@ -1,6 +1,7 @@
 {{partial "application-header"}}
 <div class="application-content">
-  {{view "application-menu" visibleWhen=view.showMenu}}
+  {{view "application-menu" id="application-menu"}}
   {{view "search-filter" visibleWhen=view.showFilters}}
+  <div id="application-overlay"></div>
   {{outlet}}
 </div>

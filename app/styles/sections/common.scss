@@ -5,7 +5,7 @@ html, body {
   overflow: hidden;
 }
 
-a{text-decoration: none;}
+a { text-decoration: none; }
 
 ul{
   padding: 0;
@@ -52,6 +52,7 @@ li{
   .toggle-menu {
     width: px-to-rem(28px);
     height: px-to-rem(30px);
+    padding: 0 px-to-rem(2px);
     cursor: pointer;
 
     &.on {
@@ -94,73 +95,48 @@ li{
 }
 
 //MENU
-.application-menu{
+#application-menu{
   $menu-width: 20rem;
-  @include square;
-  transition: opacity 0.3s;
-  opacity: 0;
-  z-index: 90000;
-  pointer-events: none;
   position: fixed;
   left: 0;
   top: $application-header-height;
-
-  &.visible{
-    pointer-events: auto;
-    opacity: 1;
-    .menu-content{
-      transform: translateX(0);
-    }
+  transform: translateX(-$menu-width);
+  transition: transform 0.06s;
+  will-change: transform;
+  background-color: $gray;
+  color: white;
+  width: $menu-width;
+  height: 100%;
+  z-index: 100;
+  @mixin item-background(){
+    transition: background-color 0.3s;
+    &:hover { background-color: $navyblue; }
   }
 
-  .menu-content{
-    @mixin item-background(){
-      transition: background-color 0.3s;
-      &:hover{
-        background-color: $navyblue;
-      }
-    }
-    @include absolute-top-left(0, 0);
-    transform: translateX(-$menu-width);
-    transition: transform 0.5s;
-    background-color: $gray;
-    height: 100%;
-    width: $menu-width;
-    color: white;
+  .menu-item{
+    @include item-background;
+    cursor: pointer;
+    padding: 1rem;
+    height: 1.2rem;
+    i { margin-right: 0.3rem; }
+  }
+  .sub-section{
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s;
 
-    .menu-item{
+    &.visible{
+      height: 100%;
+    }
+    li {
       @include item-background;
       cursor: pointer;
-      padding: 1rem;
-      height: 1.2rem;
-
-      i{
-        margin-right: 0.3rem;
+      padding: 0.2rem 2rem;
+      a {
+        color: inherit;
+        text-decoration: none;
       }
     }
-    .sub-section{
-      height: 0;
-      overflow: hidden;
-      transition: height 0.5s;
-
-      &.visible{
-        height: 100%;
-      }
-      li{
-        @include item-background;
-        cursor: pointer;
-        padding: 0.2rem 2rem;
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-      }
-    }
-
-  }
-  .overlay{
-    @include square;
-    background-color: rgba(black, 0.3);
   }
 }
 
@@ -170,4 +146,16 @@ li{
   width: 100%;
   position: relative;
   margin-top: $application-header-height;
+}
+
+#application-overlay {
+  background-color: rgba(black, 0.4);
+  position: fixed;
+  left: 0;
+  top: $application-header-height;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  will-change: opacity;
 }
