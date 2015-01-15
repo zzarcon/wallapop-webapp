@@ -11,17 +11,20 @@
 
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/wallapop-webapp.css">
+
+    {{content-for 'head-footer'}}
   </head>
   <body>
     {{content-for 'body'}}
+    <div id="init-loader" class="loader-wrapper">
+      <span class="ouro ouro3">
+        <span class="left"><span class="anim"></span></span>
+        <span class="right"><span class="anim"></span></span>
+      </span>
+    </div>
 
     <script src="assets/vendor.js"></script>
     <script src="assets/wallapop-webapp.js"></script>
-   <div id="init-loader" class="loader-wrapper">
-     <span class="ouro ouro3">
-       <span class="left"><span class="anim"></span></span>
-       <span class="right"><span class="anim"></span></span>
-     </span>
-   </div>
+    {{content-for 'body-footer'}}
   </body>
 </html>
