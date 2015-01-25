@@ -2,9 +2,10 @@ import Ember from "ember";
 import AppStatus from "../app-status";
 import queryParams from '../query-params';
 
-export default Ember.ObjectController.extend(
-  Ember.Evented, // TODO: Remove Ember.Evented mixin. Is just a temporal hack before migrate to components
-  {
+export default Ember.ObjectController.extend({
+  applicationMenuExpandedRatio: 0,
+  menuExpansionSpeed: 0.053333,
+
   setupFilters: function() {
     this.set('content', {});
     queryParams.forEach(function(filterName) {
@@ -50,6 +51,20 @@ export default Ember.ObjectController.extend(
   },
 
   actions: {
+    toggleCategories: function() {
+      this.toggleProperty('showCategories');
+    },
+
+    openCollections: function() {
+      this.transitionToRoute('collections');
+      this.hideMenu();
+    },
+
+    openCategory: function(id) {
+      this.transitionToRoute("products", { queryParams: {categories: id }});
+      this.hideMenu();
+    },
+
     selectCategory: function(category) {
       category.toggleProperty('selected');
     },
@@ -79,14 +94,20 @@ export default Ember.ObjectController.extend(
         }
       }.bind(this));
 
-      this.transitionToRoute("products", {
-        queryParams: params
-      });
-    },
-
-    hideMenu: function() {
-      this.trigger('hideMenu');
+      this.transitionToRoute("products", { queryParams: params });
     }
-  }
+  },
 
+  // Private
+  hideMenu: function(){
+    this.set('showCategories', false);
+    function reduceMenuExpansion(){
+      var newExpansion = Math.max(this.get('applicationMenuExpandedRatio') - this.menuExpansionSpeed, 0);
+      this.set('applicationMenuExpandedRatio', newExpansion);
+      if (newExpansion > 0) {
+        requestAnimationFrame(reduceMenuExpansion.bind(this));
+      }
+    }
+    requestAnimationFrame(reduceMenuExpansion.bind(this));
+  }
 });

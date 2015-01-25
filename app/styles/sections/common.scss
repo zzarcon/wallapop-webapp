@@ -52,22 +52,15 @@ li{
   .toggle-menu {
     width: px-to-rem(28px);
     height: px-to-rem(30px);
-    padding: 0 px-to-rem(2px);
+    padding: 0 px-to-rem(4px);
     cursor: pointer;
 
-    &.on {
-      .one {transform: rotate(45deg) translate(5px, 5px);}
-      .two {opacity: 0;}
-      .three {transform: rotate(-45deg) translate(7px, -8px);}
-    }
-
-    div {
+    .stroke {
       width: 100%;
       height: 5px;
       background: white;
       margin: 4px auto;
-      transition: all 0.3s;
-      backface-visibility: hidden;
+      will-change: transform;
     }
   }
 
@@ -96,12 +89,12 @@ li{
 
 //MENU
 #application-menu{
-  $menu-width: 20rem;
+  $menu-width: 320px;
   position: fixed;
   left: 0;
   top: $application-header-height;
   transform: translateX(-$menu-width);
-  transition: transform 0.06s;
+  -webkit-transform: translateX(-$menu-width);
   will-change: transform;
   background-color: $gray;
   color: white;

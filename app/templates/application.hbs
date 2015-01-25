@@ -1,7 +1,23 @@
 {{partial "application-header"}}
 <div class="application-content">
-  {{view "application-menu" id="application-menu"}}
+  <slider-menu id="application-menu" position="left" progress={{applicationMenuExpandedRatio}} defaultSpeed={{menuExpansionSpeed}}>
+    <div class="menu-item collections">
+      <div {{action "openCollections"}}>
+        <i class="fa fa-heart"></i> Collections
+      </div>
+    </div>
+    <div class="menu-item categories" {{action "toggleCategories"}}>
+      <i class="fa fa-th-list"></i> Categories
+    </div>
+    <div class="sub-section {{if showCategories "visible"}}">
+      <ul>
+        {{#each category in allCategories}}
+          <li class="category" {{action "openCategory" category.id}}>{{category.name}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </slider-menu>
   {{view "search-filter" visibleWhen=view.showFilters}}
-  <div id="application-overlay"></div>
+  <content-overlay id="application-overlay" opacity={{applicationMenuExpandedRatio}}></content-overlay>
   {{outlet}}
 </div>
