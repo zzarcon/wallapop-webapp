@@ -54,7 +54,7 @@ export default Ember.Object.extend({
     var fetcher = this;
 
     return new Ember.RSVP.Promise(function(resolve) {
-      var alreadyFetched = store.getById('product', id);
+      var alreadyFetched = store.peekRecord('product', id);
       if (alreadyFetched) {
         resolve(alreadyFetched);
       } else {
@@ -85,13 +85,13 @@ export default Ember.Object.extend({
   productRecordFromItem: function(item) {
     var store = this.get('store');
     var record = Ember.$.extend({id: item.itemId}, item);
-    return store.getById('product', item.itemId) || store.createRecord('product', record);
+    return store.peekRecord('product', item.itemId) || store.createRecord('product', record);
   },
 
   userRecordFromUser: function(user) {
     var store = this.get('store');
     var record = Ember.$.extend({id: user.userId}, user);
-    return store.getById('user', user.userId) || store.createRecord('user', record);
+    return store.peekRecord('user', user.userId) || store.createRecord('user', record);
   },
 
   user: function(id) {
@@ -100,7 +100,7 @@ export default Ember.Object.extend({
     var fetcher = this;
 
     return new Ember.RSVP.Promise(function(resolve) {
-      var alreadyFetched = store.getById('user', id);
+      var alreadyFetched = store.peekRecord('user', id);
       if (alreadyFetched) {
         resolve(alreadyFetched);
       } else {

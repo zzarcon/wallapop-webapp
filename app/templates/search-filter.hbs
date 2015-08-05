@@ -3,7 +3,7 @@
 </div>
 {{#view "filter-section" title="Where are you searching for it?" class="location-search" visible=false}}
   {{input type="search" value=location class="search-query" placeholder=""}}
-  {{view "location-map"}}
+  {{!-- {{view "location-map"}} --}}
 {{/view}}
 {{#view "filter-section" title=view.categoriesTitle class="categories"}}
   {{#each category in allCategories}}
