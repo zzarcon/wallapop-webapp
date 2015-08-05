@@ -12,28 +12,13 @@ module.exports = function(environment) {
       'style-src': "* 'self' 'unsafe-inline'"
     },
     EmberENV: {
-      FEATURES: {
-        // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
-        'ember-htmlbars': true,
-        'ember-htmlbars-inline-if-helper': true,
-        'ember-htmlbars-attribute-syntax': true
-      }
+      FEATURES: {}
     },
-
-    APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
-    }
+    APP: {}
   };
 
   if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    ENV.APP.LOG_VIEW_LOOKUPS = true;
-    // ENV.locationType = 'history';
+
   }
 
   if (environment === 'test') {
