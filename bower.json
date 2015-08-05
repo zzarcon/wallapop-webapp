@@ -17,7 +17,7 @@
     "leaflet.markercluster": "0.4.0",
     "sass-flex-mixin": "mastastealth/sass-flex-mixin#1.0.0",
     "font-awesome": "*",
-    "bxslider-4": "*",
+    "bxslider-4": "4.2.5",
     "ember-cli-moment-shim": "~0.0.2"
   }
 }
