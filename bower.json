@@ -12,7 +12,7 @@
     "jquery": "^1.11.1",
     "loader.js": "ember-cli/loader.js#3.2.0",
     "qunit": "~1.18.0",
-    "ember-leaflet": "0.6.0",
+    "ember-leaflet": "0.6.1",
     "leaflet": "*",
     "leaflet.markercluster": "0.4.0",
     "sass-flex-mixin": "mastastealth/sass-flex-mixin#1.0.0",
