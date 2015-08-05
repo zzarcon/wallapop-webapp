@@ -1,11 +1,10 @@
 /* global require, module */
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-
 var app = new EmberApp();
 
+//TODO: Move imports
 app.import('bower_components/bxslider-4/jquery.bxslider.js');
-
 app.import('bower_components/bxslider-4/jquery.bxslider.css');
 
 //Ember LeafLeft
